@@ -1,5 +1,5 @@
 <template>
-    <div class="flex border-b border-40 nova-button-wrapper" v-if="field.visible">
+    <div class="flex border-b border-40 -mx-6 px-6 nova-button-wrapper" v-if="field.visible">
         <div class="w-1/4 py-4">
             <label class="font-normal text-80">{{ field.label }}</label>
         </div>
