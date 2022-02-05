@@ -1,339 +1,120 @@
 <?php
 
-namespace NovaButton;
+namespace Dnwjn\NovaButton;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Resource;
+use Dnwjn\NovaButton\Events\ButtonClick;
 
 class Button extends Field
 {
-    public $style = null;
-
-    public $classes = [];
-
-    public $reload = false;
-
-    public $visible = true;
-
-    public $showOnUpdate = false;
-
-    public $showOnCreation = false;
-
+    /** @var string */
     public $component = 'nova-button';
 
-    public $event = "NovaButton\Events\ButtonClick";
+    /** @var bool */
+    public $showOnUpdate = false;
 
+    /** @var bool */
+    public $showOnCreation = false;
+
+    /** @var string|null */
     public $text = null;
 
-    public $type = null;
+    /** @var callable|string|null */
+    public $key = null;
 
-    public $label = null;
+    /** @var array */
+    public $config = [];
 
-    public $title = null;
+    /** @var string|null */
+    public $style = null;
 
-    public $indexName = null;
-
-    public $route = null;
-
-    public $link = null;
-
-    public $confirm = null;
-
-    public $indexAlign = 'right';
-
-    public $errorText = null;
-
-    public $errorClasses = null;
-
+    /** @var string|null */
     public $loadingText = null;
 
-    public $loadingClasses = null;
+    /** @var string|null */
+    public $loadingStyle = null;
 
+    /** @var string|null */
     public $successText = null;
 
+    /** @var string|null */
+    public $successStyle = null;
+
+    /** @var string|null */
+    public $errorText = null;
+
+    /** @var string|null */
+    public $errorStyle = null;
+
+    /** @var array|null */
+    public $confirm = null;
+
+    /** @var bool */
+    public $reload = false;
+
+    /** @var string */
+    public $event = ButtonClick::class;
+
+    /** @var bool */
+    public $visible = true;
+
+    /** @var string|null */
+    public $title = null;
+
+    /** @var string|null */
+    public $label = null;
+
+    /** @var array */
+    public $classes = [];
+
+    /** @var string|null */
+    public $type = null;
+
+    /** @var array|null */
+    public $route = null;
+
+    /** @var array|null */
+    public $link = null;
+
+    /** @var string|null */
+    public $indexAlign = 'left';
+
+    /** @var string|null */
+    public $loadingClasses = null;
+
+    /** @var string|null */
     public $successClasses = null;
 
-    public function __construct($name, $key = null)
+    /** @var string|null */
+    public $errorClasses = null;
+
+    /**
+     * Create a new field.
+     *
+     * @param string $name
+     * @param string|callable|null $attribute
+     */
+    public function __construct($name, $attribute = null)
     {
-        $this->name = $name;
+        parent::__construct($name, $attribute);
+
         $this->text = $name;
-        $this->key = $key ?? Str::kebab($name);
-        $this->attribute = $this->key;
+        $this->key = $attribute ?? Str::kebab($name);
         $this->config = config('nova-button');
+
         $this->addDefaultSettings();
     }
 
-    public function resolve($resource, $attribute = null)
-    {
-        parent::resolve($resource, $attribute);
-
-        $this->classes[] = 'nova-button-'.strtolower(class_basename($resource));
-        $this->classes[] = Arr::get($this->config, "styles.{$this->style}");
-        $this->loadingClasses = Arr::get($this->config, "styles.{$this->loadingStyle}");
-        $this->successClasses = Arr::get($this->config, "styles.{$this->successStyle}");
-        $this->errorClasses = Arr::get($this->config, "styles.{$this->errorStyle}");
-
-        $this->withMeta([
-            'key'            => $this->key,
-            'type'           => $this->type,
-            'link'           => $this->link,
-            'text'           => $this->text,
-            'event'          => $this->event,
-            'label'          => $this->label,
-            'route'          => $this->route,
-            'reload'         => $this->reload,
-            'confirm'        => $this->confirm,
-            'visible'        => $this->visible,
-            'classes'        => $this->classes,
-            'indexName'      => $this->indexName,
-            'title'          => $this->title,
-            'indexAlign'     => $this->indexAlign,
-            'errorText'      => $this->errorText,
-            'errorClasses'   => $this->errorClasses,
-            'successText'    => $this->successText,
-            'successClasses' => $this->successClasses,
-            'loadingText'    => $this->loadingText,
-            'loadingClasses' => $this->loadingClasses,
-        ]);
-    }
-
-    public function style($style)
-    {
-        $this->style = $style;
-
-        return $this;
-    }
-
-    public function loadingStyle($loadingStyle)
-    {
-        $this->loadingStyle = $loadingStyle;
-
-        return $this;
-    }
-
-    public function successStyle($successStyle)
-    {
-        $this->successStyle = $successStyle;
-
-        return $this;
-    }
-
-    public function errorStyle($errorStyle)
-    {
-        $this->errorStyle = $errorStyle;
-
-        return $this;
-    }
-
-    public function classes($classes)
-    {
-        $this->classes[] = $classes;
-
-        return $this;
-    }
-
-    public function confirm($message1 = null, $message2 = null)
-    {
-        $this->confirm = [
-            'title' => __('Confirmation'),
-            'body'  => null,
-        ];
-
-        if ($message1 && $message2 == null) {
-            $this->confirm['body'] = $message1;
-        }
-
-        if ($message1 && $message2) {
-            $this->confirm['title'] = $message1;
-            $this->confirm['body'] = $message2;
-        }
-
-        return $this;
-    }
-
-    public function reload($reload = true)
-    {
-        $this->reload = $reload;
-
-        return $this;
-    }
-
-    public function event($event)
-    {
-        $this->event = $event;
-
-        return $this;
-    }
-
-    public function visible($condition)
-    {
-        $this->visible = $condition;
-
-        return $this;
-    }
-
-    public function update($update)
-    {
-        $this->update = $update;
-
-        return $this;
-    }
-
-    public function loadingText($loadingText)
-    {
-        $this->loadingText = $loadingText;
-
-        return $this;
-    }
-
-    public function successText($successText)
-    {
-        $this->successText = $successText;
-
-        return $this;
-    }
-
-    public function errorText($errorText)
-    {
-        $this->errorText = $errorText;
-
-        return $this;
-    }
-
-    public function label($label)
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    public function title($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function index($namespace)
-    {
-        $this->route('index', [
-            'resourceName' => $this->normalizeResourceName($namespace),
-        ]);
-
-        return $this;
-    }
-
-    public function detail($namespace, $id)
-    {
-        $this->route('detail', [
-            'resourceName' => $this->normalizeResourceName($namespace),
-            'resourceId'   => $id,
-        ]);
-
-        return $this;
-    }
-
-    public function create($namespace)
-    {
-        $this->route('create', [
-            'resourceName' => $this->normalizeResourceName($namespace),
-        ]);
-
-        return $this;
-    }
-
-    public function edit($namespace, $id)
-    {
-        $this->route('edit', [
-            'resourceName' => $this->normalizeResourceName($namespace),
-            'resourceId'   => $id,
-        ]);
-
-        return $this;
-    }
-
-    public function lens($namespace, $key)
-    {
-        $this->route('lens', [
-            'resourceName' => $this->normalizeResourceName($namespace),
-            'lens'         => $key,
-        ]);
-
-        return $this;
-    }
-
-    public function link($href, $target = '_blank')
-    {
-        $this->type = 'link';
-        $this->link = compact('href', 'target');
-
-        return $this;
-    }
-
-    public function route($name, $params)
-    {
-        $this->type = 'route';
-
-        $this->route = [
-            'name'   => $name,
-            'params' => $params,
-            'query'  => [],
-        ];
-
-        return $this;
-    }
-
     /**
-     * Add params to route.
-     *
-     * @param array $params
-     *
-     * @return $this
+     * @return void
      */
-    public function withParams(array $params)
-    {
-        $this->route['query'] = array_merge($this->route['query'], $params);
-
-        return $this;
-    }
-
-    /**
-     * Add filters to index view.
-     *
-     * @param array $filters
-     *
-     * @return $this
-     */
-    public function withFilters(array $filters)
-    {
-        $key = $this->route['params']['resourceName'].'_filter';
-
-        $this->route['query'][$key] = base64_encode(json_encode(collect($filters)->map(function ($value, $key) {
-            return [
-                'class' => $key,
-                'value' => $value,
-            ];
-        })->values()));
-
-        return $this;
-    }
-
-    /**
-     * @param string $namespace
-     *
-     * @return string
-     */
-    protected function normalizeResourceName($namespace)
-    {
-        return class_exists($namespace) && is_subclass_of($namespace, Resource::class)
-            ? $namespace::uriKey() : $namespace;
-    }
-
-    public function addDefaultSettings()
+    protected function addDefaultSettings(): void
     {
         $this->addLinkFallbacks();
+
         $this->style = Arr::get($this->config, 'defaults.style', 'link-primary');
         $this->loadingText = Arr::get($this->config, 'defaults.loadingText', 'Loading');
         $this->loadingStyle = Arr::get($this->config, 'defaults.loadingStyle', str_replace('primary', 'grey', $this->style));
@@ -343,22 +124,447 @@ class Button extends Field
         $this->successStyle = Arr::get($this->config, 'defaults.successStyle', str_replace('primary', 'success', $this->style));
     }
 
-    public function addLinkFallbacks()
+    /**
+     * @return void
+     */
+    protected function addLinkFallbacks(): void
     {
-        if (!Arr::has($this->config, 'styles.link-primary')) {
+        if (! Arr::has($this->config, 'styles.link-primary')) {
             $this->config['styles']['link-primary'] = 'cursor-pointer dim inline-block text-primary font-bold no-underline';
         }
 
-        if (!Arr::has($this->config, 'styles.link-success')) {
+        if (! Arr::has($this->config, 'styles.link-success')) {
             $this->config['styles']['link-success'] = 'cursor-pointer dim inline-block text-success font-bold no-underline';
         }
 
-        if (!Arr::has($this->config, 'styles.link-grey')) {
+        if (! Arr::has($this->config, 'styles.link-grey')) {
             $this->config['styles']['link-grey'] = 'cursor-pointer dim inline-block text-grey font-bold no-underline';
         }
 
-        if (!Arr::has($this->config, 'styles.link-danger')) {
+        if (! Arr::has($this->config, 'styles.link-danger')) {
             $this->config['styles']['link-danger'] = 'cursor-pointer dim inline-block text-danger font-bold no-underline';
         }
+    }
+
+    /**
+     * Resolve the field's value.
+     *
+     * @param mixed $resource
+     * @param string|null $attribute
+     * @return void
+     */
+    public function resolve($resource, $attribute = null): void
+    {
+        parent::resolve($resource, $attribute);
+
+        $this->classes[] = 'nova-button-' . strtolower(class_basename($resource));
+        $this->classes[] = Arr::get($this->config, "styles.{$this->style}");
+        $this->loadingClasses = Arr::get($this->config, "styles.{$this->loadingStyle}");
+        $this->successClasses = Arr::get($this->config, "styles.{$this->successStyle}");
+        $this->errorClasses = Arr::get($this->config, "styles.{$this->errorStyle}");
+
+        $this->withMeta([
+            'text' => $this->text,
+            'key' => $this->key,
+            'loadingText' => $this->loadingText,
+            'successText' => $this->successText,
+            'errorText' => $this->errorText,
+            'confirm' => $this->confirm,
+            'reload' => $this->reload,
+            'event' => $this->event,
+            'visible' => $this->visible,
+            'title' => $this->title,
+            'label' => $this->label,
+            'classes' => $this->classes,
+            'type' => $this->type,
+            'route' => $this->route,
+            'link' => $this->link,
+            'indexAlign' => $this->indexAlign,
+            'loadingClasses' => $this->loadingClasses,
+            'successClasses' => $this->successClasses,
+            'errorClasses' => $this->errorClasses,
+        ]);
+    }
+
+    //--------------------------------------
+    // TYPES
+    //--------------------------------------
+
+    /**
+     * Enable the confirmation button type.
+     *
+     * @param string|null $message1
+     * @param string|null $message2
+     * @return $this
+     */
+    public function confirm(?string $message1 = null, ?string $message2 = null): self
+    {
+        $this->confirm = [
+            'title' => __('Confirmation'),
+            'body' => null,
+        ];
+
+        if ($message1 !== null && $message2 === null) {
+            $this->confirm['body'] = $message1;
+        }
+
+        if ($message1 !== null && $message2 !== null) {
+            $this->confirm['title'] = $message1;
+            $this->confirm['body'] = $message2;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Enable the reload button type.
+     *
+     * @param bool $reload
+     * @return $this
+     */
+    public function reload(bool $reload = true): self
+    {
+        $this->reload = $reload;
+
+        return $this;
+    }
+
+    /**
+     * Enable the event button type.
+     *
+     * @param string $event
+     * @return $this
+     */
+    public function event(string $event): self
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    //--------------------------------------
+    // CONDITIONALS
+    //--------------------------------------
+
+    /**
+     * Set the button visibility.
+     *
+     * @param bool $condition
+     * @return $this
+     */
+    public function visible(bool $condition): self
+    {
+        $this->visible = $condition;
+
+        return $this;
+    }
+
+    //--------------------------------------
+    // TEXTS
+    //--------------------------------------
+
+    /**
+     * Set the loading text.
+     *
+     * @param string $loadingText
+     * @return $this
+     */
+    public function loadingText(string $loadingText): self
+    {
+        $this->loadingText = $loadingText;
+
+        return $this;
+    }
+
+    /**
+     * Set the success text.
+     *
+     * @param string $successText
+     * @return $this
+     */
+    public function successText(string $successText): self
+    {
+        $this->successText = $successText;
+
+        return $this;
+    }
+
+    /**
+     * Set the error text.
+     *
+     * @param string $errorText
+     * @return $this
+     */
+    public function errorText(string $errorText): self
+    {
+        $this->errorText = $errorText;
+
+        return $this;
+    }
+
+    /**
+     * Set the title.
+     *
+     * @param string $title
+     * @return $this
+     */
+    public function title(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Set the label.
+     *
+     * @param string $label
+     * @return $this
+     */
+    public function label(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    //--------------------------------------
+    // STYLES
+    //--------------------------------------
+
+    /**
+     * Set the classes.
+     *
+     * @param ...$classes
+     * @return $this
+     */
+    public function classes(...$classes): self
+    {
+        $this->classes = array_merge($this->classes, ...$classes);
+
+        return $this;
+    }
+
+    /**
+     * Set the style.
+     *
+     * @param string $style
+     * @return $this
+     */
+    public function style(string $style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * Set the loading style.
+     *
+     * @param string $loadingStyle
+     * @return $this
+     */
+    public function loadingStyle(string $loadingStyle): self
+    {
+        $this->loadingStyle = $loadingStyle;
+
+        return $this;
+    }
+
+    /**
+     * Set the success style.
+     *
+     * @param string $successStyle
+     * @return $this
+     */
+    public function successStyle(string $successStyle): self
+    {
+        $this->successStyle = $successStyle;
+
+        return $this;
+    }
+
+    /**
+     * Set the error style.
+     *
+     * @param string $errorStyle
+     * @return $this
+     */
+    public function errorStyle(string $errorStyle): self
+    {
+        $this->errorStyle = $errorStyle;
+
+        return $this;
+    }
+
+    //--------------------------------------
+    // ROUTES
+    //--------------------------------------
+
+    /**
+     * Set the index route.
+     *
+     * @param string $namespace
+     * @return $this
+     */
+    public function index(string $namespace): self
+    {
+        $this->route('index', [
+            'resourceName' => $this->normalizeResourceName($namespace),
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Set the detail route.
+     *
+     * @param string $namespace
+     * @param int $id
+     * @return $this
+     */
+    public function detail(string $namespace, int $id): self
+    {
+        $this->route('detail', [
+            'resourceName' => $this->normalizeResourceName($namespace),
+            'resourceId' => $id,
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Set the create route.
+     *
+     * @param string $namespace
+     * @return $this
+     */
+    public function create(string $namespace): self
+    {
+        $this->route('create', [
+            'resourceName' => $this->normalizeResourceName($namespace),
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Set the edit route.
+     *
+     * @param string $namespace
+     * @param int $id
+     * @return $this
+     */
+    public function edit(string $namespace, int $id): self
+    {
+        $this->route('edit', [
+            'resourceName' => $this->normalizeResourceName($namespace),
+            'resourceId' => $id,
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Set the lens route.
+     *
+     * @param string $namespace
+     * @param string $key
+     * @return $this
+     */
+    public function lens(string $namespace, string $key): self
+    {
+        $this->route('lens', [
+            'resourceName' => $this->normalizeResourceName($namespace),
+            'lens' => $key,
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Set the link.
+     *
+     * @param string $href
+     * @param string $target
+     * @return $this
+     */
+    public function link(string $href, string $target = '_blank'): self
+    {
+        $this->type = 'link';
+        $this->link = compact('href', 'target');
+
+        return $this;
+    }
+
+    /**
+     * Set the route.
+     *
+     * @param string $name
+     * @param array $params
+     * @return $this
+     */
+    protected function route(string $name, array $params = []): self
+    {
+        $this->type = 'route';
+        $this->route = [
+            'name' => $name,
+            'params' => $params,
+            'query' => [],
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Set the route params.
+     *
+     * @param array $params
+     * @return $this
+     */
+    public function withParams(array $params): self
+    {
+        $this->route['query'] = array_merge($this->route['query'] ?? [], $params);
+
+        return $this;
+    }
+
+    /**
+     * Set the index filters.
+     *
+     * @param array $filters
+     * @return $this
+     */
+    public function withFilters(array $filters): self
+    {
+        $resourceName = $this->route['params']['resourceName'] ?? null;
+
+        if ($resourceName === null) {
+            return $this;
+        }
+
+        $key = $resourceName . '_filter';
+
+        $query = collect($filters)
+            ->map(function ($value, $key) {
+                return [
+                    'class' => $key,
+                    'value' => $value,
+                ];
+            })->values();
+
+        $this->route['query'][$key] = base64_encode(json_encode($query));
+
+        return $this;
+    }
+
+    /**
+     * @param string $namespace
+     * @return string
+     */
+    protected function normalizeResourceName(string $namespace): string
+    {
+        return class_exists($namespace) && is_subclass_of($namespace, Resource::class)
+            ? $namespace::uriKey() : $namespace;
     }
 }

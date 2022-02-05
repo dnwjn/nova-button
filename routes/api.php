@@ -1,6 +1,6 @@
 <?php
 
-Route::post(
-    '/{resource}/{resourceId}/{buttonKey}',
-    'NovaButton\Http\Controllers\ButtonController@handle'
-);
+use Illuminate\Support\Facades\Route;
+use Dnwjn\NovaButton\Http\Controllers\ButtonController;
+
+Route::post('/{resource}/{resourceId}/{buttonKey}', [ButtonController::class, 'handle']);

@@ -1,6 +1,11 @@
 {
     "name": "dnwjn/nova-button",
     "description": "Nova button package",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "homepage": "https://github.com/dnwjn/nova-button",
     "license": "MIT",
     "authors": [
         {
@@ -12,22 +17,30 @@
             "email": "hello@dnwjn.dev"
         }
     ],
+    "require": {
+        "php": ">=7.3.0",
+        "ext-json": "*",
+        "illuminate/support": "^8.81.0",
+        "illuminate/events": "^v8.81.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
     "autoload": {
         "psr-4": {
-            "NovaButton\\": "src/"
+            "Dnwjn\\NovaButton\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NovaButton\\Providers\\FieldServiceProvider"
+                "Dnwjn\\NovaButton\\NovaButtonServiceProvider"
             ]
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "minimum-stability": "dev",
-    "require": {
-        "php": "^7.4 | ^8.0",
-        "illuminate/support": "^8.81.0",
-        "illuminate/events": "^v8.81.0"
-    }
+    "prefer-stable": true
 }
