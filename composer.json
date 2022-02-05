@@ -1,11 +1,15 @@
 {
-    "name": "dillingham/nova-button",
+    "name": "dnwjn/nova-button",
     "description": "Nova button package",
     "license": "MIT",
     "authors": [
         {
             "name": "Brian Dillingham",
             "email": "bdillingham88@gmail.com"
+        },
+        {
+            "name": "dnwjn",
+            "email": "hello@dnwjn.dev"
         }
     ],
     "autoload": {
@@ -21,5 +25,9 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": "^7.4 | ^8.0",
+        "illuminate/support": "^8.81.0",
+        "illuminate/events": "^v8.81.0"
+    }
 }

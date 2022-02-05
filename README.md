@@ -9,10 +9,25 @@ Use buttons to trigger backend events, navigate nova routes or visit links.
 
 ![nova-button](https://user-images.githubusercontent.com/29180903/50742708-dffeb600-11dc-11e9-9eed-36f42166c7c4.png)
 
+> ℹ️ This package is a continuation of [dillingham/nova-button](https://github.com/dillingham/nova-button) and has been created
+> since it seemed to be abandoned.
+
+### Requirements
+
+This package requires the following minimum versions:
+
+| What    | Minimum |
+|---------|---------|
+| PHP     | 7.4     |
+| Laravel | 7.0     |
+| Nova    | 3.0     |
+
 ### Installation
 
+You can install this package by running the following command:
+
 ```bash
-composer require dillingham/nova-button
+composer require dnwjn/nova-button
 ```
 
 ### Usage
@@ -31,7 +46,7 @@ public function fields(Request $request)
 }
 ```
 
-Quick links: [Button Styles](https://github.com/dillingham/nova-button#button-styles) | [Event text / style](https://github.com/dillingham/nova-button#button-state) | [Navigation](https://github.com/dillingham/nova-button#button-navigation) | [CSS classes](https://github.com/dillingham/nova-button#button-classes) | [Lens example](https://github.com/dillingham/nova-button#example)
+Quick links: [Button Styles](https://github.com/dnwjn/nova-button#button-styles) | [Event text / style](https://github.com/dnwjn/nova-button#button-state) | [Navigation](https://github.com/dnwjn/nova-button#button-navigation) | [CSS classes](https://github.com/dnwjn/nova-button#button-classes) | [Lens example](https://github.com/dnwjn/nova-button#example)
 
 ---
 
@@ -154,7 +169,7 @@ Each key adds classes from the `nova-button` config
 ```
 
 ### Style config
-Publish the nova-button config to add / edit [available styles & defaults](https://github.com/dillingham/nova-button/blob/master/config/nova-button.php) 
+Publish the nova-button config to add / edit [available styles & defaults](https://github.com/dnwjn/nova-button/blob/master/config/nova-button.php) 
 ```
 php artisan vendor:publish --tag=nova-button -- force
 ```
@@ -234,13 +249,3 @@ Button::make('Confirm')->event('App\Events\ConfirmClick')
 # Telescope inspection
 
 ![event-triggered](https://user-images.githubusercontent.com/29180903/50742633-1a1b8800-11dc-11e9-8a2d-5ec70d3fcae4.png)
-
----
-
-# Author
-
-Hi 👋, Im Brian Dillingham, creator of this Nova package [and others](https://novapackages.com/collaborators/dillingham)
-
-Hope you find it useful. Feel free to reach out with feedback.
-
-Follow me on twitter: [@im_brian_d](https://twitter.com/im_brian_d) 

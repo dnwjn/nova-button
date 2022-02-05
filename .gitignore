@@ -303,3 +303,6 @@ modules.xml
 !.vscode/*.code-snippets
 
 # End of https://www.toptal.com/developers/gitignore/api/osx,node,laravel,phpstorm+all,composer,visualstudiocode
+
+# Laravel folder (for dev purposes)
+laravel/
