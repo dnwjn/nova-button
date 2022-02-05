@@ -7,7 +7,7 @@ Nova package for rendering buttons on index, detail and lens views.
 
 Use buttons to trigger backend events, navigate nova routes or visit links.
 
-![nova-button](https://user-images.githubusercontent.com/29180903/50742708-dffeb600-11dc-11e9-9eed-36f42166c7c4.png)
+![example-users](https://user-images.githubusercontent.com/57711725/152637226-e7047831-b726-4940-95c9-617db4d42de4.png)
 
 > ℹ️ This package is a continuation of [dillingham/nova-button](https://github.com/dillingham/nova-button) and has been created
 > since it seemed to be abandoned.
@@ -197,7 +197,7 @@ Also able to style the following css classes
 
 Use [lenses](https://nova.laravel.com/docs/1.0/lenses/defining-lenses.html) with buttons for a very focused user experience 
 
-![lens-button](https://user-images.githubusercontent.com/29180903/50742642-31f30c00-11dc-11e9-96c2-e0534e963aed.png)
+![example-lenses](https://user-images.githubusercontent.com/57711725/152637243-ebd753c2-5eda-4749-b8ba-c98ceb162e5b.png)
 
 ```php
 <?php
@@ -248,4 +248,4 @@ Button::make('Confirm')->event('App\Events\ConfirmClick')
 
 # Telescope inspection
 
-![event-triggered](https://user-images.githubusercontent.com/29180903/50742633-1a1b8800-11dc-11e9-8a2d-5ec70d3fcae4.png)
+![example-telescope](https://user-images.githubusercontent.com/57711725/152637248-4bf65fa8-a270-48b9-aff3-08e6193eab6c.png)
