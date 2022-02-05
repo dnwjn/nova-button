@@ -7,15 +7,15 @@
     <div class="w-3/4 py-4">
       <span v-if="field.confirm == null">
         <nova-button
-            :field="field"
-            :resourceName="resourceName"
-            :resourceId="resourceId"
-            @finished="reload"
+          :field="field"
+          :resourceName="resourceName"
+          :resourceId="resourceId"
+          @finished="reload"
         />
       </span>
 
       <div v-else>
-        <a :class="field.classes" v-html="field.text" @click="openModal = true"/>
+        <a :class="field.classes" v-html="field.text" @click="openModal = true" />
 
         <portal to="modals">
           <transition name="fade">
@@ -28,14 +28,17 @@
                 </div>
 
                 <div
-                    class="border-t border-50 px-6 py-3 ml-auto flex items-center"
-                    style="min-height: 70px; flex-direction: row-reverse">
+                  class="border-t border-50 px-6 py-3 ml-auto flex items-center"
+                  style="min-height: 70px; flex-direction: row-reverse"
+                >
                   <a
-                      style="order: 2;"
-                      class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
-                      @click.prevent="openModal = false">Cancel</a>
+                    style="order: 2;"
+                    class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
+                    @click.prevent="openModal = false"
+                    >Cancel</a
+                  >
 
-                  <nova-button v-bind="$props" @finished="modalReload"/>
+                  <nova-button v-bind="$props" @finished="modalReload" />
                 </div>
               </div>
             </modal>
@@ -51,6 +54,6 @@ import field from '../../field';
 
 export default {
   props: ['resource', 'resourceName', 'resourceId', 'field'],
-  mixins: [field]
-}
+  mixins: [field],
+};
 </script>

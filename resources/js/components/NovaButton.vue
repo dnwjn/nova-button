@@ -1,14 +1,14 @@
 <template>
   <span v-if="field.visible" :class="ajaxClasses">
     <span
-        ref="novabutton"
-        class="nova-button"
-        v-html="buttonText"
-        @click="handleClick"
-        :class="buttonClasses"
-        :style="{'min-width': buttonWidth}"
-        :title="field.title"
-        :dusk="field.attribute"
+      ref="novabutton"
+      class="nova-button"
+      v-html="buttonText"
+      @click="handleClick"
+      :class="buttonClasses"
+      :style="{ 'min-width': buttonWidth }"
+      :title="field.title"
+      :dusk="field.attribute"
     ></span>
   </span>
 </template>
@@ -26,7 +26,7 @@
 </style>
 
 <script>
-import {queue} from '../queue.js';
+import { queue } from '../queue.js';
 
 export default {
   props: ['resource', 'resourceName', 'resourceId', 'field'],
@@ -34,10 +34,10 @@ export default {
     buttonWidth: null,
     loading: false,
     success: false,
-    error: false
+    error: false,
   }),
   mounted() {
-    this.$nextTick(function () {
+    this.$nextTick(function() {
       this.buttonWidth = this.$refs.novabutton.clientWidth + 2 + 'px';
     });
   },
@@ -80,8 +80,8 @@ export default {
       }, 200);
 
       return Nova.request().post(
-          `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.resourceId}/${this.field.key}`,
-          {event: this.field.event}
+        `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.resourceId}/${this.field.key}`,
+        { event: this.field.event }
       );
     },
     navigate() {
@@ -92,7 +92,7 @@ export default {
       if (this.field.type === 'link') {
         window.open(this.field.link.href, this.field.link.target);
       }
-    }
+    },
   },
   computed: {
     buttonText() {
@@ -132,7 +132,7 @@ export default {
       }
 
       return this.field.classes;
-    }
-  }
+    },
+  },
 };
 </script>

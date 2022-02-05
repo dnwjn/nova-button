@@ -1,10 +1,10 @@
-import {queue} from './js/queue';
+import { queue } from './js/queue';
 
 export default {
   data() {
     return {
-      openModal: false
-    }
+      openModal: false,
+    };
   },
   methods: {
     reload() {
@@ -19,6 +19,6 @@ export default {
         this.openModal = false;
         this.reload();
       }, 400);
-    }
-  }
-}
+    },
+  },
+};
