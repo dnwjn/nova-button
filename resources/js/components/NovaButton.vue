@@ -37,7 +37,7 @@ export default {
     error: false,
   }),
   mounted() {
-    this.$nextTick(function() {
+    this.$nextTick(() => {
       this.buttonWidth = this.$refs.novabutton.clientWidth + 2 + 'px';
     });
   },
@@ -74,6 +74,10 @@ export default {
     },
     post() {
       this.$emit('loading');
+
+      if (_.isEmpty(this.resourceName) || _.isEmpty(this.resourceId) || _.isEmpty(this.field?.key)) {
+        return;
+      }
 
       window.setTimeout(() => {
         this.loading = true;
