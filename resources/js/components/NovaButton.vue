@@ -1,16 +1,16 @@
 <template>
-  <span v-if="field.visible" :class="ajaxClasses">
-    <span
-      ref="novabutton"
-      class="nova-button"
-      v-html="buttonText"
-      @click="handleClick"
-      :class="buttonClasses"
-      :style="{ 'min-width': buttonWidth }"
-      :title="field.title"
-      :dusk="field.attribute"
-    ></span>
-  </span>
+    <span v-if="field.visible" :class="ajaxClasses">
+        <span
+            ref="novabutton"
+            class="nova-button"
+            v-html="buttonText"
+            @click="handleClick"
+            :class="buttonClasses"
+            :style="{ 'min-width': buttonWidth }"
+            :title="field.title"
+            :dusk="field.attribute"
+        ></span>
+    </span>
 </template>
 
 <style>
@@ -48,7 +48,7 @@ export default {
       this.$emit('clicked');
 
       try {
-        const response = await this.post();
+        await this.post();
 
         this.success = true;
         this.loading = false;
