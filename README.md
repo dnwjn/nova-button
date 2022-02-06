@@ -82,6 +82,7 @@ You can require a confirmation for destructive actions:
 ```php
 Button::make('Cancel Account')->confirm('Are you sure?'),
 Button::make('Cancel Account')->confirm('Confirmation', 'Are you sure you want to cancel your account?'),
+Button::make('Cancel Account')->confirm('Confirmation', 'Are you sure you want to cancel your account?', 'Cancel'),
 ```
 
 ### Reload

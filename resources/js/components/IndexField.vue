@@ -38,11 +38,10 @@
               >
                 <button
                   style="order:2;"
-                  @click.prevent="openModal = false"
                   class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
-                >
-                  Cancel
-                </button>
+                  v-html="field.confirm.cancelButtonText"
+                  @click.prevent="openModal = false"
+                />
 
                 <nova-button
                   :field="field"

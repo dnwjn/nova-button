@@ -204,13 +204,15 @@ class Button extends Field
      *
      * @param string|null $message1
      * @param string|null $message2
+     * @param string|null $cancelButtonText
      * @return $this
      */
-    public function confirm(?string $message1 = null, ?string $message2 = null): self
+    public function confirm(?string $message1 = null, ?string $message2 = null, ?string $cancelButtonText = null): self
     {
         $this->confirm = [
             'title' => __('Confirmation'),
             'body' => null,
+            'cancelButtonText' => $cancelButtonText ?: __('Cancel'),
         ];
 
         if ($message1 !== null && $message2 === null) {
