@@ -70,6 +70,9 @@ class Button extends Field
     /** @var string|null */
     public $label = null;
 
+    /** @var string|null */
+    public $indexName = null;
+
     /** @var array */
     public $classes = [];
 
@@ -107,6 +110,7 @@ class Button extends Field
         $this->text = $name;
         $this->key = $attribute ?? Str::kebab($name);
         $this->config = config('nova-button');
+        $this->indexName = $name;
 
         $this->addDefaultSettings();
     }
@@ -179,6 +183,7 @@ class Button extends Field
             'disabled' => $this->disabled,
             'title' => $this->title,
             'label' => $this->label,
+            'indexName' => $this->indexName,
             'classes' => $this->classes,
             'type' => $this->type,
             'route' => $this->route,
@@ -341,6 +346,19 @@ class Button extends Field
     public function label(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Set the index name.
+     *
+     * @param string|null $indexName
+     * @return $this
+     */
+    public function indexName(?string $indexName = null): self
+    {
+        $this->indexName = $indexName;
 
         return $this;
     }

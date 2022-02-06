@@ -64,7 +64,7 @@ public function fields(Request $request)
 * [Confirm](#confirm)
 * [Reload](#reload)
 * [Events](#events)
-* [Title and label](#title-and-label)
+* [Texts](#texts)
 * [State](#state)
 * [Feedback](#feedback)
 * [Nova routes](#nova-routes)
@@ -120,13 +120,33 @@ Button::make('Notify')->event(App\Events\NotifyRequested::class)
 
 You can listen to the event by creating a listener and registering it in your `EventServiceProvider`.
 
-### Title and label
+### Texts
 
-Sometimes you might want to add a title or label to the button:
+#### Title
+
+You can set the title attribute for the button:
 
 ```php
-Button::make('Notify')->title('Button title')->label('Button label')
+Button::make('Notify')->title('Button title')
 ```
+
+#### Label
+
+You can set the label for the button, which is shown on the detail, create and update views:
+
+```php
+Button::make('Notify')->label('Button label')
+```
+
+#### Index name
+
+You can set the index name for the button, which is shown on the index view as the table header:
+
+```php
+Button::make('Notify')->indexName('Actions')
+```
+
+Default is set to the button name. You can also pass `null` to have no index name.
 
 ### State
 
