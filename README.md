@@ -148,6 +148,12 @@ Button::make('Notify')->visible($request->user()->can('notifyUser', $this))
 Of course you can also use Nova's builtin methods, like for [authorization](https://nova.laravel.com/docs/3.0/resources/authorization.html#fields)
 or to limit visibility to [specific views](https://nova.laravel.com/docs/3.0/resources/fields.html#showing-hiding-fields).
 
+If you want to show a button on the create or update views you can simply use Nova's builtin methods:
+
+```php
+Button::make('Notify')->showOnCreating()->showOnUpdating()
+```
+
 #### Disabled
 
 You can disable the button:
