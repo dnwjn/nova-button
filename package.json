@@ -12,7 +12,7 @@
         "check-format": "prettier --list-different 'resources/**/*.{css,js,vue}'",
         "format": "prettier --write 'resources/**/*.{css,js,vue}'",
         "lint": "eslint resources/js --fix --ext js,vue",
-        "version": "./bin/sync-versions.sh && auto-changelog -p && git add CHANGELOG.md",
+        "version": "./bin/sync-versions.sh && auto-changelog -p && git add CHANGELOG.md && composer update",
         "bump-patch": "npm version patch --no-git-tag-version",
         "bump-minor": "npm version minor --no-git-tag-version",
         "bump-major": "npm version major --no-git-tag-version"
