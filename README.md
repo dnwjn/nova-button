@@ -351,3 +351,21 @@ class ConfirmUser
 To confirm the event and event data used in above functionality, see the Telescope inspection below:
 
 ![telescope](https://user-images.githubusercontent.com/57711725/152637248-4bf65fa8-a270-48b9-aff3-08e6193eab6c.png)
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [dnwjn](https://github.com/dnwjn)
+
+Author of original package: [dillingham](https://github.com/dillingham)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
