@@ -4,7 +4,7 @@
       <label class="font-normal text-80">{{ field.label }}</label>
     </div>
 
-    <div class="w-3/4 py-4">
+    <div class="w-3/4 py-4 break-words">
       <span v-if="field.confirm == null">
         <nova-button
           :field="field"

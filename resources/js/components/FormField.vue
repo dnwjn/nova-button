@@ -1,10 +1,10 @@
 <template>
   <div class="flex border-b border-40 nova-button-wrapper" v-if="field.visible">
-    <div class="w-1/4 py-4">
-      <label class="font-normal text-80">{{ field.label }}</label>
+    <div class="px-8 py-6 w-1/5">
+      <h4 class="inline-block text-80 leading-tight">{{ field.label }}</h4>
     </div>
 
-    <div class="w-3/4 py-4">
+    <div class="px-8 py-6 w-1/2">
       <span v-if="field.confirm == null">
         <nova-button
           :field="field"
