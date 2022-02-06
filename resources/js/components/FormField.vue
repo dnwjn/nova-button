@@ -10,12 +10,18 @@
           :field="field"
           :resourceName="resourceName"
           :resourceId="resourceId"
+          :disabled="field.disabled"
           @finished="reload"
         />
       </span>
 
       <div v-else>
-        <a :class="field.classes" v-html="field.text" @click="openModal = true" />
+        <button
+          :class="field.classes"
+          :disabled="field.disabled"
+          v-html="field.text"
+          @click="openModal = true"
+        />
 
         <portal to="modals">
           <transition name="fade">
@@ -31,14 +37,15 @@
                   class="border-t border-50 px-6 py-3 ml-auto flex items-center"
                   style="min-height: 70px; flex-direction: row-reverse"
                 >
-                  <a
+                  <button
                     style="order: 2;"
                     class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
                     @click.prevent="openModal = false"
-                    >Cancel</a
                   >
+                    Cancel
+                  </button>
 
-                  <nova-button v-bind="$props" @finished="modalReload" />
+                  <nova-button v-bind="$props" :disabled="field.disabled" @finished="modalReload" />
                 </div>
               </div>
             </modal>

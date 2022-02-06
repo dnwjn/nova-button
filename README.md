@@ -65,8 +65,8 @@ public function fields(Request $request)
 * [Reload](#reload)
 * [Events](#events)
 * [Title and label](#title-and-label)
-* [Visibility](#visiblity)
 * [State](#state)
+* [Feedback](#feedback)
 * [Nova routes](#nova-routes)
 * [Links](#links)
 * [Classes](#classes)
@@ -128,7 +128,9 @@ Sometimes you might want to add a title or label to the button:
 Button::make('Notify')->title('Button title')->label('Button label')
 ```
 
-### Visiblity
+### State
+
+#### Visibility
 
 You can conditionally show the button:
 
@@ -146,7 +148,16 @@ Button::make('Notify')->visible($request->user()->can('notifyUser', $this))
 Of course you can also use Nova's builtin methods, like for [authorization](https://nova.laravel.com/docs/3.0/resources/authorization.html#fields)
 or to limit visibility to [specific views](https://nova.laravel.com/docs/3.0/resources/fields.html#showing-hiding-fields).
 
-### State
+#### Disabled
+
+You can disable the button:
+
+```php
+Button::make('Notify')->disabled()
+Button::make('Notify')->disabled($this->is_complete === false)
+```
+
+### Feedback
 
 When using events, you might want to provide visual feedback to the end user. This is especially useful for long running listeners.
 

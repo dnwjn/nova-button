@@ -61,6 +61,9 @@ class Button extends Field
     /** @var bool */
     public $visible = true;
 
+    /** @var bool */
+    public $disabled = false;
+
     /** @var string|null */
     public $title = null;
 
@@ -173,6 +176,7 @@ class Button extends Field
             'reload' => $this->reload,
             'event' => $this->event,
             'visible' => $this->visible,
+            'disabled' => $this->disabled,
             'title' => $this->title,
             'label' => $this->label,
             'classes' => $this->classes,
@@ -255,6 +259,19 @@ class Button extends Field
     public function visible(bool $condition): self
     {
         $this->visible = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Set the button disabled state.
+     *
+     * @param bool $condition
+     * @return $this
+     */
+    public function disabled(bool $condition = true): self
+    {
+        $this->disabled = $condition;
 
         return $this;
     }

@@ -1,15 +1,17 @@
 <template>
   <span v-if="field.visible" :class="ajaxClasses">
-    <span
+    <button
       ref="novabutton"
+      type="button"
       class="nova-button"
       v-html="buttonText"
+      :disabled="disabled"
       @click="handleClick"
       :class="buttonClasses"
       :style="{ 'min-width': buttonWidth }"
       :title="field.title"
       :dusk="field.attribute"
-    ></span>
+    ></button>
   </span>
 </template>
 
@@ -29,7 +31,7 @@
 import { queue } from '../queue.js';
 
 export default {
-  props: ['resource', 'resourceName', 'resourceId', 'field', 'ajaxClasses'],
+  props: ['resource', 'resourceName', 'resourceId', 'field', 'ajaxClasses', 'disabled'],
   data: () => ({
     buttonWidth: null,
     loading: false,
@@ -43,6 +45,10 @@ export default {
   },
   methods: {
     async handleClick() {
+      if (this.field.disabled) {
+        return;
+      }
+
       queue.add(this.resourceId);
 
       this.$emit('clicked');
@@ -75,7 +81,7 @@ export default {
     post() {
       this.$emit('loading');
 
-      if (_.isEmpty(this.resourceName) || _.isEmpty(this.resourceId) || _.isEmpty(this.field?.key)) {
+      if (_.isEmpty(this.resourceName) || _.isEmpty(this.resourceId) || _.isEmpty(this.field.key)) {
         return;
       }
 

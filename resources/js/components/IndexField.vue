@@ -8,14 +8,16 @@
         :field="field"
         :resourceName="resourceName"
         :resourceId="$parent.resource['id'].value"
+        :disabled="field.disabled"
         @finished="reload"
       />
     </span>
 
     <div v-else :class="{ 'block text-right': field.indexAlign === 'right' }">
-      <a
+      <button
         class="whitespace-no-wrap"
         :class="field.classes"
+        :disabled="field.disabled"
         v-html="field.text"
         @click="openModal = true"
       />
@@ -34,18 +36,20 @@
                 class="border-t border-50 px-6 py-3 ml-auto flex items-center"
                 style="min-height: 70px; flex-direction: row-reverse"
               >
-                <a
+                <button
                   style="order:2;"
                   @click.prevent="openModal = false"
                   class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
-                  >Cancel</a
                 >
+                  Cancel
+                </button>
 
                 <nova-button
                   :field="field"
                   @finished="modalReload"
                   :resourceName="resourceName"
                   :resourceId="$parent.resource['id'].value"
+                  :disabled="field.disabled"
                 />
               </div>
             </form>
