@@ -1,5 +1,6 @@
 {
     "private": true,
+    "version": "1.0.11",
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -10,9 +11,14 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "check-format": "prettier --list-different 'resources/**/*.{css,js,vue}'",
         "format": "prettier --write 'resources/**/*.{css,js,vue}'",
-        "lint": "eslint resources/js --fix --ext js,vue"
+        "lint": "eslint resources/js --fix --ext js,vue",
+        "version": "./bin/sync-versions.sh && auto-changelog -p && git add CHANGELOG.md",
+        "bump-patch": "npm version patch --no-git-tag-version",
+        "bump-minor": "npm version minor --no-git-tag-version",
+        "bump-major": "npm version major --no-git-tag-version"
     },
     "devDependencies": {
+        "auto-changelog": "^2.4.0",
         "cross-env": "^5.0.0",
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",

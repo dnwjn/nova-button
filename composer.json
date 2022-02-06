@@ -1,20 +1,23 @@
 {
     "name": "dnwjn/nova-button",
-    "description": "Nova button package",
+    "description": "A Laravel Nova package for adding buttons to your resources.",
     "keywords": [
         "laravel",
         "nova"
     ],
+    "version": "1.0.11",
     "homepage": "https://github.com/dnwjn/nova-button",
     "license": "MIT",
     "authors": [
         {
-            "name": "Brian Dillingham",
-            "email": "bdillingham88@gmail.com"
+            "name": "Danique Wijnalda",
+            "email": "hello@dnwjn.dev",
+            "homepage": "https://dnwjn.dev",
+            "role": "Developer"
         },
         {
-            "name": "dnwjn",
-            "email": "hello@dnwjn.dev"
+            "name": "Brian Dillingham",
+            "email": "bdillingham88@gmail.com"
         }
     ],
     "require": {
