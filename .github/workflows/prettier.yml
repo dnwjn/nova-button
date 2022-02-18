@@ -1,0 +1,23 @@
+name: Fix JS styling
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+
+      - name: Run Prettier
+        uses: creyD/prettier_action@v4.2
+        with:
+          prettier_options: --write 'resources/**/*.{css,js,vue}'
