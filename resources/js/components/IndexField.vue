@@ -25,7 +25,7 @@
       <portal to="modals" v-if="openModal">
         <transition name="fade">
           <modal @modal-close="openModal = false">
-            <form class="bg-white rounded-lg shadow-lg overflow-hidden" style="width: 460px;">
+            <form class="bg-white rounded-lg shadow-lg overflow-hidden" style="width: 460px">
               <div class="p-8">
                 <heading :level="2" class="mb-6" v-html="field.confirm.title"></heading>
 
@@ -37,7 +37,7 @@
                 style="min-height: 70px; flex-direction: row-reverse"
               >
                 <button
-                  style="order:2;"
+                  style="order: 2"
                   class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
                   v-html="field.confirm.cancelButtonText"
                   @click.prevent="openModal = false"
