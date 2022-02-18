@@ -22,7 +22,7 @@
         "cross-env": "^5.0.0",
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
-        "eslint-plugin-vue": "^4.4.0",
+        "eslint-plugin-vue": "^8.4.1",
         "laravel-mix": "^5.0.5",
         "laravel-nova": "^1.4.1",
         "prettier": "^1.14.0",
