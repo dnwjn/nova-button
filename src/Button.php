@@ -2,11 +2,11 @@
 
 namespace Dnwjn\NovaButton;
 
+use Dnwjn\NovaButton\Events\ButtonClick;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Resource;
-use Dnwjn\NovaButton\Events\ButtonClick;
 
 class Button extends Field
 {
@@ -136,19 +136,19 @@ class Button extends Field
      */
     protected function addLinkFallbacks(): void
     {
-        if (! Arr::has($this->config, 'styles.link-primary')) {
+        if (!Arr::has($this->config, 'styles.link-primary')) {
             $this->config['styles']['link-primary'] = 'cursor-pointer dim inline-block text-primary font-bold no-underline';
         }
 
-        if (! Arr::has($this->config, 'styles.link-success')) {
+        if (!Arr::has($this->config, 'styles.link-success')) {
             $this->config['styles']['link-success'] = 'cursor-pointer dim inline-block text-success font-bold no-underline';
         }
 
-        if (! Arr::has($this->config, 'styles.link-grey')) {
+        if (!Arr::has($this->config, 'styles.link-grey')) {
             $this->config['styles']['link-grey'] = 'cursor-pointer dim inline-block text-grey font-bold no-underline';
         }
 
-        if (! Arr::has($this->config, 'styles.link-danger')) {
+        if (!Arr::has($this->config, 'styles.link-danger')) {
             $this->config['styles']['link-danger'] = 'cursor-pointer dim inline-block text-danger font-bold no-underline';
         }
     }

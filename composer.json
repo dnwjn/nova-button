@@ -23,10 +23,11 @@
     "require": {
         "php": ">=7.3.0",
         "ext-json": "*",
-        "illuminate/support": "^8.81.0",
-        "illuminate/events": "^v8.81.0"
+        "illuminate/events": "^v8.81.0",
+        "illuminate/support": "^v8.81.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.4",
         "roave/security-advisories": "dev-latest"
     },
     "autoload": {
@@ -43,6 +44,9 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "fix": "./vendor/bin/php-cs-fixer fix"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

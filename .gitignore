@@ -4,7 +4,7 @@
 package-lock.json
 composer.phar
 composer.lock
-phpunit.xml
 mix-manifest.json
 /laravel
 !.editorconfig
+.php-cs-fixer.cache
