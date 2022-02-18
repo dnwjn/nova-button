@@ -23,7 +23,7 @@
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-vue": "^4.4.0",
-        "laravel-mix": "^5.0.5",
+        "laravel-mix": "^6.0.43",
         "laravel-nova": "^1.4.1",
         "prettier": "^1.14.0",
         "vue-template-compiler": "^2.6.12"
