@@ -26,10 +26,10 @@
         "laravel-mix": "^6.0.43",
         "laravel-nova": "^1.4.1",
         "prettier": "^2.5.1",
-        "vue-loader": "^17.0.0",
+        "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "vue": "^3.2.31"
+        "vue": "^2.5.0"
     }
 }
