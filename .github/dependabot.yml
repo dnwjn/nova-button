@@ -1,16 +1,19 @@
 version: 2
 updates:
-  - package-ecosystem: composer
+  - package-ecosystem: "composer"
     directory: "/"
     schedule:
-      interval: weekly
+      interval: "weekly"
     open-pull-requests-limit: 10
-  - package-ecosystem: npm
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: weekly
+      interval: "weekly"
     open-pull-requests-limit: 10
     ignore:
       - dependency-name: "vue"
         versions:
           - "^3.0"
+      - dependency-name: "vue-loader"
+        versions:
+          - ">15.9.8"
