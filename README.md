@@ -25,7 +25,7 @@ Use buttons to trigger backend events, navigate Nova routes or visit links.
 | What    | Minimum |
 |---------|---------|
 | PHP     | \>=7.3  |
-| Laravel | \>=7.0  |
+| Laravel | \>=8.0  |
 | Nova    | \>=3.0  |
 
 ## Installation
