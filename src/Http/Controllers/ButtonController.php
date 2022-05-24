@@ -10,7 +10,7 @@ class ButtonController extends Controller
     public function handle(NovaRequest $request)
     {
         $event = $request->event;
-        $resource = isset($request->resourceId) ? $request->findModelQuery()->firstOrFail() : null;        
+        $resource = isset($request->resourceId) ? $request->findModelQuery()->firstOrFail() : null;
 
         event(new $event($resource, $request->buttonKey));
 
