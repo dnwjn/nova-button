@@ -16,6 +16,7 @@
         "node": true
     },
     "rules": {
-        "vue/html-indent": ["error", 2]
+        "vue/html-indent": ["error", 2],
+        "vue/no-v-text-v-html-on-component": "off"
     }
 }
