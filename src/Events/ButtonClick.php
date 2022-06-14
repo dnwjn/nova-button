@@ -2,6 +2,7 @@
 
 namespace Dnwjn\NovaButton\Events;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 
 class ButtonClick
@@ -9,14 +10,14 @@ class ButtonClick
     use Dispatchable;
 
     /** @var string */
-    public $resource;
-
-    /** @var string */
     public $key;
 
-    public function __construct(string $resource, string $key)
+    /** @var Model|null */
+    public $resource;
+
+    public function __construct(string $key, $resource = null)
     {
-        $this->resource = $resource;
         $this->key = $key;
+        $this->resource = $resource;
     }
 }

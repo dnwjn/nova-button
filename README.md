@@ -102,10 +102,10 @@ By default, clicking the button will trigger an event via AJAX.
 
 Default event: `Dnwjn\NovaButton\Events\ButtonClick`.
 
-The event will receive the resource model it was triggered from and the key:
+The event will receive the key it was triggered from and, if available, the resource model:
 
-* `$event->resource` = `model`
-* `$event->key` = `"notify"`
+* `$event->key` = `'notify'`
+* `$event->resource` = `\Illuminate\Database\Eloquent\Model|null`
 
 You can override the key:
 
