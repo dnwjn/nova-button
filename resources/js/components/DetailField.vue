@@ -43,7 +43,7 @@
                     class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
                     v-html="field.confirm.cancelButtonText"
                     @click.prevent="openModal = false"
-		    type="button"
+                    type="button"
                   />
 
                   <nova-button v-bind="$props" :disabled="field.disabled" @finished="modalReload" />
