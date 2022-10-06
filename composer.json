@@ -5,7 +5,6 @@
         "laravel",
         "nova"
     ],
-    "version": "3.0.0",
     "homepage": "https://github.com/dnwjn/nova-button",
     "license": "MIT",
     "authors": [
