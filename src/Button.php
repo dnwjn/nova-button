@@ -131,7 +131,6 @@ class Button extends Field
         $this->successText = Arr::get($this->config, 'defaults.successText', 'Success!');
         $this->successStyle = Arr::get($this->config, 'defaults.successStyle', str_replace('primary', 'success', $this->style));
 
-
         $this->fillCallback = $this->getNullFillCallback();
     }
 
@@ -616,7 +615,7 @@ class Button extends Field
      */
     private function getNullFillCallback(): callable
     {
-        return static function(NovaRequest $request, $model, $attribute, $requestAttribute) {
+        return static function (NovaRequest $request, $model, $attribute, $requestAttribute) {
             return null;
         };
     }

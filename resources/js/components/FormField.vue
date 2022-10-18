@@ -59,7 +59,7 @@
 
 <script>
 import field from '../../field';
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import { FormField, HandlesValidationErrors } from 'laravel-nova';
 
 export default {
   props: ['resource', 'resourceName', 'resourceId', 'field'],
