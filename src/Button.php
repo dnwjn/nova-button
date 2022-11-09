@@ -6,6 +6,7 @@ use Dnwjn\NovaButton\Events\ButtonClick;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 
 class Button extends Field
@@ -129,6 +130,8 @@ class Button extends Field
         $this->errorStyle = Arr::get($this->config, 'defaults.errorStyle', str_replace('primary', 'danger', $this->style));
         $this->successText = Arr::get($this->config, 'defaults.successText', 'Success!');
         $this->successStyle = Arr::get($this->config, 'defaults.successStyle', str_replace('primary', 'success', $this->style));
+
+        $this->fillCallback = $this->getNullFillCallback();
     }
 
     /**
@@ -603,5 +606,17 @@ class Button extends Field
     {
         return class_exists($namespace) && is_subclass_of($namespace, Resource::class)
             ? $namespace::uriKey() : $namespace;
+    }
+
+    /**
+     * As per https://stackoverflow.com/a/64378023/2549335
+     *
+     * @return callable
+     */
+    private function getNullFillCallback(): callable
+    {
+        return static function (NovaRequest $request, $model, $attribute, $requestAttribute) {
+            return null;
+        };
     }
 }
