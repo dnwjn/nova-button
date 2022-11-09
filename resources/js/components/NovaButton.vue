@@ -81,7 +81,11 @@ export default {
     post() {
       this.$emit('loading');
 
-      if (_.isEmpty(this.resourceName) || _.isEmpty(this.resourceId) || _.isEmpty(this.field.key)) {
+      if (
+        this.isEmpty(this.resourceName) ||
+        this.isEmpty(this.resourceId) ||
+        this.isEmpty(this.field.key)
+      ) {
         return;
       }
 
@@ -102,6 +106,9 @@ export default {
       if (this.field.type === 'link') {
         window.open(this.field.link.href, this.field.link.target);
       }
+    },
+    isEmpty(value) {
+      return typeof value !== 'number' && _.isEmpty(value);
     },
   },
   computed: {
