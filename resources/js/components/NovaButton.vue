@@ -6,7 +6,7 @@
       class="nova-button"
       v-html="buttonText"
       :disabled="disabled"
-      @click="handleClick"
+      @click.prevent.stop="handleClick"
       :class="buttonClasses"
       :style="{ 'min-width': buttonWidth }"
       :title="field.title"

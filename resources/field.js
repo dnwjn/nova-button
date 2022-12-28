@@ -3,7 +3,7 @@ import { queue } from './js/queue';
 export default {
   data() {
     return {
-      openModal: false,
+      modalIsOpen: false,
     };
   },
   methods: {
@@ -16,7 +16,7 @@ export default {
     },
     modalReload() {
       window.setTimeout(() => {
-        this.openModal = false;
+        this.modalIsOpen = false;
         this.reload();
       }, 400);
     },

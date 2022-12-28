@@ -20,38 +20,18 @@
           :class="field.classes"
           :disabled="field.disabled"
           v-html="field.text"
-          @click="openModal = true"
+          @click.prevent.stop="modalIsOpen = true"
           type="button"
         />
 
-        <portal to="modals">
-          <transition name="fade">
-            <modal v-if="openModal" @modal-close="openModal = false">
-              <div class="bg-white rounded-lg shadow-lg overflow-hidden" style="width: 460px">
-                <div class="p-8">
-                  <heading :level="2" class="mb-6" v-html="field.confirm.title"></heading>
-
-                  <p class="text-80 leading-normal" v-html="field.confirm.body"></p>
-                </div>
-
-                <div
-                  class="border-t border-50 px-6 py-3 ml-auto flex items-center"
-                  style="min-height: 70px; flex-direction: row-reverse"
-                >
-                  <button
-                    style="order: 2"
-                    class="cursor-pointer btn text-80 font-normal px-3 mr-3 btn-link"
-                    v-html="field.confirm.cancelButtonText"
-                    @click.prevent="openModal = false"
-                    type="button"
-                  />
-
-                  <nova-button v-bind="$props" :disabled="field.disabled" @finished="modalReload" />
-                </div>
-              </div>
-            </modal>
-          </transition>
-        </portal>
+        <modal
+          v-if="modalIsOpen"
+          :field="field"
+          :resource="resource"
+          :resource-name="resourceName"
+          @finished="modalReload"
+          @closed="modalIsOpen = false"
+        />
       </div>
     </div>
   </div>
@@ -59,10 +39,12 @@
 
 <script>
 import field from '../../field';
-import { FormField, HandlesValidationErrors } from 'laravel-nova';
+import NovaButton from './NovaButton';
+import Modal from './Modal';
 
 export default {
+  components: { NovaButton, Modal },
   props: ['resource', 'resourceName', 'resourceId', 'field'],
-  mixins: [field, FormField, HandlesValidationErrors],
+  mixins: [field],
 };
 </script>
