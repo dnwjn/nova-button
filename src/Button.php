@@ -125,7 +125,7 @@ class Button extends Field
 
         $this->style = Arr::get($this->config, 'defaults.style', 'link-primary');
         $this->loadingText = Arr::get($this->config, 'defaults.loadingText', 'Loading');
-        $this->loadingStyle = Arr::get($this->config, 'defaults.loadingStyle', str_replace('primary', 'grey', $this->style));
+        $this->loadingStyle = Arr::get($this->config, 'defaults.loadingStyle', str_replace('primary', 'gray', $this->style));
         $this->errorText = Arr::get($this->config, 'defaults.errorText', 'Error!');
         $this->errorStyle = Arr::get($this->config, 'defaults.errorStyle', str_replace('primary', 'danger', $this->style));
         $this->successText = Arr::get($this->config, 'defaults.successText', 'Success!');

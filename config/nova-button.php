@@ -14,7 +14,7 @@ return [
 
     'defaults' => [
         'style' => 'link-primary',
-        'loadingStyle' => 'link-grey',
+        'loadingStyle' => 'link-gray',
         'loadingText' => 'Loading',
         'successStyle' => 'link-success',
         'successText' => 'Success',

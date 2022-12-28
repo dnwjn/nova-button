@@ -199,7 +199,7 @@ There are 3 events and for each event you can provide the text and style:
 
 | Event     | Text                                     | Style                            |
 |-----------|------------------------------------------|----------------------------------|
-| `loading` | `->loadingText('Sending...')`            | `->loadingStyle('grey-outline')` |
+| `loading` | `->loadingText('Sending...')`            | `->loadingStyle('gray-outline')` |
 | `success` | `->successText('Done!')`                 | `->successStyle('success')`      |
 | `error`   | `->errorText('Something went wrong...')` | `->errorStyle('danger')`         |
 
@@ -287,7 +287,7 @@ The default available classes are as follows:
 | warning | warning-outline | warning-link |
 | danger  | danger-outline  | danger-link  |
 | info    | info-outline    | info-link    |
-| grey    | grey-outline    | grey-link    |
+| gray    | gray-outline    | gray-link    |
 
 The passed key refers to one of the classes defined in the [config file](https://github.com/dnwjn/nova-button/blob/main/config/nova-button.php).
 You are free to change these classes or add your own.
