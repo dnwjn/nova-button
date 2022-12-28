@@ -113,6 +113,10 @@ export default {
   },
   computed: {
     buttonText() {
+      if (this.field.confirm?.confirmButtonText) {
+        return this.field.confirm.confirmButtonText;
+      }
+
       if (this.field.link && this.field.link.target === '_blank') {
         return this.field.text;
       }
