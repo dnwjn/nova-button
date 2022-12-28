@@ -26,7 +26,7 @@
               :resource-name="resourceName"
               :resource-id="resource.id.value"
               :disabled="field.disabled"
-              @finished="$emit('finished')"
+              @finished="onFinished"
             />
           </div>
         </div>
@@ -43,6 +43,13 @@ export default {
   components: { NovaButton },
   props: ['resource', 'resourceName', 'field'],
   mixins: [field],
+  methods: {
+    onFinished() {
+      Nova.success('Success!');
+
+      this.$emit('finished');
+    }
+  }
 };
 </script>
 
