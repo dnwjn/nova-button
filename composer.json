@@ -22,13 +22,18 @@
     "require": {
         "php": "^7.3|^8.0",
         "ext-json": "*",
-        "illuminate/events": "^8.0|^9.0",
-        "illuminate/support": "^8.0|^9.0"
+        "laravel/nova": "^4.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.4",
         "roave/security-advisories": "dev-latest"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Dnwjn\\NovaButton\\": "src/"

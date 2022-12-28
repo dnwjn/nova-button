@@ -1,5 +1,9 @@
 let mix = require('laravel-mix')
 
-mix.setPublicPath('dist')
+require('./nova.mix')
+
+mix
+  .setPublicPath('dist')
   .js('resources/js/field.js', 'js')
-  .vue()
+  .vue({ version: 3 })
+  .nova('dnwjn/nova-button')
