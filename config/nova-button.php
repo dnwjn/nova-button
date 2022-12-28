@@ -36,31 +36,31 @@ return [
 
     'styles' => [
         // Fill
-        'primary' => 'cursor-pointer btn btn-default btn-primary',
-        'success' => 'cursor-pointer btn btn-default bg-success text-white',
-        'warning' => 'cursor-pointer btn btn-default bg-warning text-white',
-        'danger' => 'cursor-pointer btn btn-default bg-danger text-white',
-        'info' => 'cursor-pointer btn btn-default bg-info text-white',
-        'grey' => 'cursor-pointer btn btn-default bg-60 text-white',
+        'primary' => 'cursor-pointer rounded px-4 h-9 font-bold bg-primary-500 hover:bg-primary-400 text-black',
+        'success' => 'cursor-pointer rounded px-4 h-9 font-bold bg-green-500 hover:bg-green-400 text-white',
+        'warning' => 'cursor-pointer rounded px-4 h-9 font-bold bg-yellow-500 hover:bg-yellow-400 text-white',
+        'danger' => 'cursor-pointer rounded px-4 h-9 font-bold bg-red-500 hover:bg-red-400 text-white',
+        'info' => 'cursor-pointer rounded px-4 h-9 font-bold bg-blue-500 hover:bg-blue-400 text-white',
+        'gray' => 'cursor-pointer rounded px-4 h-9 font-bold bg-gray-500 hover:bg-gray-400 text-white',
 
         // Outline
-        'primary-outline' => 'cursor-pointer btn btn-default border border-primary text-primary',
-        'success-outline' => 'cursor-pointer btn btn-default border border-success text-success',
-        'warning-outline' => 'cursor-pointer btn btn-default border border-warning text-warning ',
-        'danger-outline' => 'cursor-pointer btn btn-default border border-danger text-danger ',
-        'info-outline' => 'cursor-pointer btn btn-default border border-info text-info ',
-        'grey-outline' => 'cursor-pointer btn btn-default border border-60 text-80 ',
+        'primary-outline' => 'cursor-pointer rounded px-4 h-9 font-bold bg-primary-500 hover:bg-primary-400 text-black border-2',
+        'success-outline' => 'cursor-pointer rounded px-4 h-9 font-bold bg-green-500 hover:bg-green-400 text-white border-2',
+        'warning-outline' => 'cursor-pointer rounded px-4 h-9 font-bold bg-yellow-500 hover:bg-yellow-400 text-white border-2',
+        'danger-outline' => 'cursor-pointer rounded px-4 h-9 font-bold bg-red-500 hover:bg-red-400 text-white border-2',
+        'info-outline' => 'cursor-pointer rounded px-4 h-9 font-bold bg-blue-500 hover:bg-blue-400 text-white border-2',
+        'gray-outline' => 'cursor-pointer rounded px-4 h-9 font-bold bg-gray-500 hover:bg-gray-400 text-white border-2',
 
         // Link
-        'primary-link' => 'cursor-pointer dim inline-block text-primary font-bold btn btn-link',
-        'success-link' => 'cursor-pointer dim inline-block text-success font-bold btn btn-link',
-        'warning-link' => 'cursor-pointer dim inline-block text-warning font-bold btn btn-link',
-        'danger-link' => 'cursor-pointer dim inline-block text-danger font-bold btn btn-link',
-        'info-link' => 'cursor-pointer dim inline-block text-info font-bold btn btn-link',
-        'grey-link' => 'cursor-pointer dim inline-block text-80 font-bold btn btn-link',
+        'primary-link' => 'cursor-pointer dim inline-block font-bold text-primary-500 hover:text-primary-400',
+        'success-link' => 'cursor-pointer dim inline-block font-bold text-green-500 hover:text-green-400',
+        'warning-link' => 'cursor-pointer dim inline-block font-bold text-yellow-500 hover:text-yellow-400',
+        'danger-link' => 'cursor-pointer dim inline-block font-bold text-red-500 hover:text-red-400',
+        'info-link' => 'cursor-pointer dim inline-block font-bold text-blue-500 hover:text-blue-400',
+        'gray-link' => 'cursor-pointer dim inline-block font-bold text-gray-500 hover:text-gray-400',
 
         // Custom
-        'custom' => 'bg-orange',
+        'custom' => 'bg-orange-500 hover:bg-orange-400',
     ],
 
 ];
