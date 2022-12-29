@@ -20,20 +20,32 @@ Use buttons to trigger backend events, navigate Nova routes or visit links.
 > *This package remains open source, so I encourage everyone to keep contributing! And if you want to get in touch with me,*
 > *feel free to do so!*
 
+## Versions
+
+For Nova 4 certain changes had to be made that rendered the package not backwards compatible with Nova 3. For that reason
+the package was split up into multiple versions. Please see the table below to determine which version you need.
+
+| Version      | Nova                                        |
+|--------------|---------------------------------------------|
+| v4           | [4.0](https://github.com/dnwjn/nova-button) |
+| v3 (current) | 3.0                                         |
+
+**Please note:** the `main` branch will always be the latest major version.
+
 ## Requirements
 
-| What    | Minimum |
-|---------|---------|
-| PHP     | \>=7.3  |
-| Laravel | \>=8.0  |
-| Nova    | \>=3.0  |
+| What    | Version         |
+|---------|-----------------|
+| PHP     | \>=7.3          |
+| Laravel | \>=8.0          |
+| Nova    | \>=3.0 and <4.0 |
 
 ## Installation
 
 You can install this package by running the following command:
 
 ```bash
-composer require dnwjn/nova-button
+composer require dnwjn/nova-button:^3.0
 ```
 
 To publish the config file, run the following command:
