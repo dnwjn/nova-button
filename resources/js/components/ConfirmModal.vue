@@ -2,7 +2,10 @@
   <div class="modal">
     <div class="modal__inner">
       <transition name="fade">
-        <div class="text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" style="width: 460px">
+        <div
+          class="text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden"
+          style="width: 460px"
+        >
           <div class="p-8">
             <heading :level="2" class="mb-6" v-html="field.confirm.title"></heading>
 
@@ -48,8 +51,8 @@ export default {
       Nova.success('Success!');
 
       this.$emit('finished');
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -113,7 +113,7 @@ export default {
   },
   computed: {
     buttonText() {
-      if (this.field.confirm?.confirmButtonText) {
+      if (this.field.confirm && this.field.confirm.confirmButtonText) {
         return this.field.confirm.confirmButtonText;
       }
 

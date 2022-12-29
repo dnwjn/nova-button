@@ -23,7 +23,7 @@
         type="button"
       />
 
-      <modal
+      <confirm-modal
         v-if="modalIsOpen"
         :field="field"
         :resource="resource"
@@ -38,10 +38,10 @@
 <script>
 import field from '../../field';
 import NovaButton from './NovaButton';
-import Modal from './Modal';
+import ConfirmModal from './ConfirmModal';
 
 export default {
-  components: { NovaButton, Modal },
+  components: { NovaButton, ConfirmModal },
   props: ['resource', 'resourceName', 'field'],
   mixins: [field],
 };
