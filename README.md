@@ -34,7 +34,7 @@ the package was split up into multiple versions. Please see the table below to d
 
 ## Requirements
 
-| What    | Minimum |
+| What    | Version |
 |---------|---------|
 | PHP     | \>=7.3  |
 | Laravel | \>=8.0  |
