@@ -10,7 +10,7 @@ export default {
     reload() {
       if (this.field.reload && queue.allowsReload()) {
         window.setTimeout(() => {
-          this.$router.go();
+          this.$inertia.reload();
         }, 200);
       }
     },

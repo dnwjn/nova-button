@@ -100,7 +100,7 @@ export default {
     },
     navigate() {
       if (this.field.type === 'route') {
-        this.$router.push(this.field.route);
+        this.$inertia.visit(this.field.route);
       }
 
       if (this.field.type === 'link') {
