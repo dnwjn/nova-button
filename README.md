@@ -30,6 +30,8 @@ the package was split up into multiple versions. Please see the table below to d
 | v4 (current) | 4.0                                                 |
 | v3           | [3.0](https://github.com/dnwjn/nova-button/tree/v3) |
 
+**Please note:** the `main` branch will always be the latest major version.
+
 ## Requirements
 
 | What    | Minimum |
