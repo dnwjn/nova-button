@@ -18,6 +18,7 @@ jobs:
         uses: creyD/prettier_action@v4.2
         with:
           prettier_options: --write ./resources/**/*.{js,vue}
+          commit_message: Fix styling
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
