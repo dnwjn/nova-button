@@ -1,4 +1,5 @@
 <template>
+  <FieldWrapper v-if="currentField.visible">
   <div class="flex border-b border-40 nova-button-wrapper" v-if="field.visible">
     <div class="px-8 py-6 w-1/5">
       <h4 class="inline-block text-80 leading-tight">{{ field.label }}</h4>
@@ -35,16 +36,20 @@
       </div>
     </div>
   </div>
+  </FieldWrapper>
 </template>
 
 <script>
 import field from '../../field';
 import NovaButton from './NovaButton';
 import ConfirmModal from './ConfirmModal';
+import { DependentFormField } from '@/mixins'
+import FieldWrapper from "@/components/FieldWrapper.vue";
+
 
 export default {
   components: { NovaButton, ConfirmModal },
-  props: ['resource', 'resourceName', 'resourceId', 'field'],
-  mixins: [field],
+  props: ['index', 'resource', 'resourceName', 'resourceId', 'field'],
+  mixins: [field, DependentFormField],
 };
 </script>

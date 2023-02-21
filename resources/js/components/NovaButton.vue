@@ -81,9 +81,10 @@ export default {
     post() {
       this.$emit('loading');
 
+      // currently absent in FormField.vue: resourceId (during creation, there cannot be one)
       if (
         this.isEmpty(this.resourceName) ||
-        this.isEmpty(this.resourceId) ||
+        // this.isEmpty(this.resourceId) ||
         this.isEmpty(this.field.key)
       ) {
         return;
@@ -94,7 +95,7 @@ export default {
       }, 200);
 
       return Nova.request().post(
-        `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.resourceId}/${this.field.key}`,
+        `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.resourceId || 0}/${this.field.key}`,
         { event: this.field.event }
       );
     },

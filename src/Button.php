@@ -6,11 +6,15 @@ use Dnwjn\NovaButton\Events\ButtonClick;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\SupportsDependentFields;
+use Laravel\Nova\Fields\Unfillable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 
-class Button extends Field
+class Button extends Field implements Unfillable
 {
+    use SupportsDependentFields;
+
     /** @var string */
     public $component = 'nova-button';
 
