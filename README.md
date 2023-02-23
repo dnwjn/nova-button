@@ -25,10 +25,10 @@ Use buttons to trigger backend events, navigate Nova routes or visit links.
 For Nova 4 certain changes had to be made that rendered the package not backwards compatible with Nova 3. For that reason
 the package was split up into multiple versions. Please see the table below to determine which version you need.
 
-| Version      | Nova                                                |
-|--------------|-----------------------------------------------------|
-| v4 (current) | 4.0                                                 |
-| v3           | [3.0](https://github.com/dnwjn/nova-button/tree/v3) |
+| Version                                            | Nova |
+|----------------------------------------------------|------|
+| v4 (current)                                       | 4.0  |
+| [v3](https://github.com/dnwjn/nova-button/tree/v3) | 3.0  |
 
 **Please note:** the `main` branch will always be the latest major version.
 
