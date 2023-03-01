@@ -27,7 +27,7 @@
             <nova-button
               :field="field"
               :resource-name="resourceName"
-              :resource-id="resource.id.value"
+              :resource-id="resourceId"
               :disabled="field.disabled"
               @finished="onFinished"
             />
@@ -51,6 +51,15 @@ export default {
       Nova.success('Success!');
 
       this.$emit('finished');
+    },
+  },
+  computed: {
+    resourceId() {
+      if (this.resource && this.resource.id && this.resource.id.value) {
+        return this.resource.id.value;
+      }
+
+      return null;
     },
   },
 };

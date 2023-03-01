@@ -6,11 +6,15 @@ use Dnwjn\NovaButton\Events\ButtonClick;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\SupportsDependentFields;
+use Laravel\Nova\Fields\Unfillable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 
-class Button extends Field
+class Button extends Field implements Unfillable
 {
+    use SupportsDependentFields;
+
     /** @var string */
     public $component = 'nova-button';
 
@@ -109,7 +113,7 @@ class Button extends Field
         parent::__construct($name, $attribute);
 
         $this->text = $name;
-        $this->key = $attribute ?? Str::kebab($name);
+        $this->key = $attribute ?? Str::slug($name);
         $this->config = config('nova-button');
         $this->indexName = $name;
 
@@ -195,6 +199,7 @@ class Button extends Field
             'loadingClasses' => $this->loadingClasses,
             'successClasses' => $this->successClasses,
             'errorClasses' => $this->errorClasses,
+            'stacked' => $this->stacked,
         ]);
     }
 
