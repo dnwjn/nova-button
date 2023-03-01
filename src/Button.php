@@ -113,7 +113,7 @@ class Button extends Field implements Unfillable
         parent::__construct($name, $attribute);
 
         $this->text = $name;
-        $this->key = $attribute ?? Str::kebab($name);
+        $this->key = $attribute ?? Str::slug($name);
         $this->config = config('nova-button');
         $this->indexName = $name;
 
@@ -199,6 +199,7 @@ class Button extends Field implements Unfillable
             'loadingClasses' => $this->loadingClasses,
             'successClasses' => $this->successClasses,
             'errorClasses' => $this->errorClasses,
+            'stacked' => $this->stacked,
         ]);
     }
 

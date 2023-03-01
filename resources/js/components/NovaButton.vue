@@ -49,7 +49,9 @@ export default {
         return;
       }
 
-      queue.add(this.resourceId);
+      if (this.resourceId) {
+        queue.add(this.resourceId);
+      }
 
       this.$emit('clicked');
 
@@ -60,7 +62,10 @@ export default {
         this.loading = false;
 
         queue.hasSuccess = true;
-        queue.remove(this.resourceId);
+
+        if (this.resourceId) {
+          queue.remove(this.resourceId);
+        }
 
         this.$emit('success');
         this.$emit('finished');
@@ -72,7 +77,9 @@ export default {
 
         queue.hasError = true;
 
-        queue.remove(this.resourceId);
+        if (this.resourceId) {
+          queue.remove(this.resourceId);
+        }
 
         this.$emit('error');
         this.$emit('finished');
@@ -81,12 +88,7 @@ export default {
     post() {
       this.$emit('loading');
 
-      // currently absent in FormField.vue: resourceId (during creation, there cannot be one)
-      if (
-        this.isEmpty(this.resourceName) ||
-        // this.isEmpty(this.resourceId) ||
-        this.isEmpty(this.field.key)
-      ) {
+      if (this.resourceName || this.field.key) {
         return;
       }
 
@@ -94,10 +96,12 @@ export default {
         this.loading = true;
       }, 200);
 
-      return Nova.request().post(
-        `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.resourceId || 0}/${this.field.key}`,
-        { event: this.field.event }
-      );
+      let route = `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.field.key}`;
+      if (this.resourceId) {
+        route += `/${this.resourceId}`;
+      }
+
+      return Nova.request().post(route, { event: this.field.event });
     },
     navigate() {
       if (this.field.type === 'route') {
@@ -107,9 +111,6 @@ export default {
       if (this.field.type === 'link') {
         window.open(this.field.link.href, this.field.link.target);
       }
-    },
-    isEmpty(value) {
-      return typeof value !== 'number' && _.isEmpty(value);
     },
   },
   computed: {
@@ -141,16 +142,23 @@ export default {
         return this.field.classes;
       }
 
-      if (this.error && this.field.errorClasses.length) {
-        return this.field.errorClasses + ' text-center nova-button-error';
+      if (this.error) {
+        return ['text-center', 'nova-button-error', this.field.errorClasses || ''].join(' ');
       }
 
-      if (this.success && this.field.successClasses.length) {
-        return this.field.successClasses + ' text-center nova-button-success';
+      if (this.success) {
+        return [
+          'text-center',
+          'nova-button-success',
+          'inline-block',
+          'pt-2',
+          'leading-tight',
+          this.field.successClasses || '',
+        ].join(' ');
       }
 
-      if (this.loading && this.field.loadingClasses) {
-        return this.field.loadingClasses + ' text-center nova-button-loading';
+      if (this.loading) {
+        return ['text-center', 'nova-button-loading', this.field.loadingClasses || ''].join(' ');
       }
 
       return this.field.classes;
