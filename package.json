@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "@vue/babel-plugin-jsx": "^1.1.1",
-        "@vue/compiler-sfc": "^3.2.22",
+        "@vue/compiler-sfc": "^3.2.47",
         "auto-changelog": "^2.4.0",
         "cross-env": "^7.0.3",
         "eslint": "^8.9.0",
