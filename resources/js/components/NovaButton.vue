@@ -88,7 +88,7 @@ export default {
     post() {
       this.$emit('loading');
 
-      if (this.resourceName || this.field.key) {
+      if (!this.resourceName || !this.field.key) {
         return;
       }
 
