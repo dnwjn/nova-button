@@ -75,7 +75,8 @@ public function fields(Request $request)
 
 * [Confirm](#confirm)
 * [Reload](#reload)
-* [Events](#events)
+* [Laravel Events](#laravel-events)
+* [JavaScript Events](#javascript-events)
 * [Texts](#texts)
 * [State](#state)
 * [Feedback](#feedback)
@@ -108,7 +109,7 @@ If you click multiple buttons, reloading will wait for all buttons to finish.
 
 If an error occurs, the page will not be reloaded.
 
-### Events
+### Laravel Events
 
 By default, clicking the button will trigger an event via AJAX.
 
@@ -132,6 +133,34 @@ Button::make('Notify')->event(App\Events\NotifyRequested::class)
 ```
 
 You can listen to the event by creating a listener and registering it in your `EventServiceProvider`.
+
+### JavaScript Events
+
+By default, clicking the button will cause an event to be dispatched via `Nova.$emit`.
+
+Default event: `Dnwjn\NovaButton\Events\ButtonClick`.
+
+The event can then be picked up via `Nova.$on`, and will receive the triggering key and, any optional arguments.
+
+You can specify the key and optional arguments:
+
+```php
+Button::make('Notify', 'notify-some-user')
+    ->emit('notification', ['article_id' => $article_id, 'which' => 'tags'])
+```
+
+You can listen to the event by creating a listener in your vue component or JavaScript:
+
+```js
+onMounted(function () {
+    Nova.$on('notification', (e) => {
+        if (e.article_id) {
+            this.getOurStory(e.article_id, e.which === 'tags', e.which === 'story');
+        }
+    })
+    // ...
+}
+```
 
 ### Texts
 

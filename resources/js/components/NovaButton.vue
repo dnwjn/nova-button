@@ -112,6 +112,12 @@ export default {
         window.open(this.field.link.href, this.field.link.target);
       }
     },
+    globalEmit() {
+      if (this.field.emit) {
+        // I'm assuming that Nova.$emit and this.$emit have different scopes, quick testing agrees
+        Nova.$emit(this.field.emit, this.field.emitArgs);
+      }
+    },
   },
   computed: {
     buttonText() {

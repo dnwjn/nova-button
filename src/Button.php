@@ -63,6 +63,12 @@ class Button extends Field implements Unfillable
     /** @var string */
     public $event = ButtonClick::class;
 
+    /** @var string */
+    public $emit = ButtonClick::class;
+
+    /** @var mixed */
+    public $emitArgs = null;
+
     /** @var bool */
     public $visible = true;
 
@@ -186,6 +192,8 @@ class Button extends Field implements Unfillable
             'confirm' => $this->confirm,
             'reload' => $this->reload,
             'event' => $this->event,
+            'emit' => $this->emit,
+            'emitArgs' => $this->emitArgs,
             'visible' => $this->visible,
             'disabled' => $this->disabled,
             'title' => $this->title,
@@ -262,6 +270,22 @@ class Button extends Field implements Unfillable
 
         return $this;
     }
+
+    /**
+     * Enable the emit button type.
+     *
+     * @param string $emit
+     * @param mixed $emitArgs
+     * @return $this
+     */
+    public function emit(string $emit, mixed $emitArgs): self
+    {
+        $this->emit = $emit;
+        $this->emitArgs = $emitArgs;
+
+        return $this;
+    }
+
 
     //--------------------------------------
     // CONDITIONALS
