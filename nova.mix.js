@@ -1,6 +1,8 @@
 const mix = require('laravel-mix')
 const webpack = require('webpack')
 const path = require('path')
+console.log('__dirname', __dirname)
+console.log('@', path.join(__dirname.split('/vendor/')[0], 'vendor/laravel/nova/resources/js/'))
 
 class NovaExtension {
   name() {
@@ -23,12 +25,23 @@ class NovaExtension {
       vue: 'Vue',
     }
 
+    // __dirname = /web/project/vendor/dnwjn/nova-button
     webpackConfig.resolve.alias = {
       ...(webpackConfig.resolve.alias || {}),
-      'laravel-nova': path.join(
-        __dirname,
-        './vendor/laravel/nova/resources/js/'
-      ),
+      'laravel-nova': [
+          path.join(__dirname.split('/vendor/')[0], 'vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, './vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, '../vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, '../../vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, '../../../vendor/laravel/nova/resources/js/'),
+      ],
+      '@': [
+          path.join(__dirname.split('/vendor/')[0], 'vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, './vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, '../vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, '../../vendor/laravel/nova/resources/js/'),
+          path.join(__dirname, '../../../vendor/laravel/nova/resources/js/'),
+      ]
     }
 
     webpackConfig.output = {

@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import field from '../../field';
-import NovaButton from './NovaButton';
-import ConfirmModal from './ConfirmModal';
+import field from '../../../field';
+import NovaButton from '../NovaButton';
+import ConfirmModal from '../ConfirmModal';
 
 export default {
   components: { NovaButton, ConfirmModal },

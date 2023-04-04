@@ -59,7 +59,7 @@ export default {
         return this.resource.id.value;
       }
 
-      return null;
+      return 0;
     },
   },
 };

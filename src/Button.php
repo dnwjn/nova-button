@@ -16,13 +16,17 @@ class Button extends Field implements Unfillable
     use SupportsDependentFields;
 
     /** @var string */
-    public $component = 'nova-button';
+    public $component = 'nova-button-field';
 
     /** @var bool */
-    public $showOnUpdate = false;
+    public $showOnUpdate = true;
 
     /** @var bool */
-    public $showOnCreation = false;
+    public $showOnCreation = true;
+
+    /** @var bool */
+    public $showOnDetail = true;
+
 
     /** @var string|null */
     public $text = null;
@@ -60,14 +64,23 @@ class Button extends Field implements Unfillable
     /** @var bool */
     public $reload = false;
 
+    /** @var bool */
+    public $reloadHard = false;
+
     /** @var string */
     public $event = ButtonClick::class;
+
+    /** @var mixed */
+    public $eventArgs = null;
 
     /** @var string */
     public $emit = ButtonClick::class;
 
     /** @var mixed */
     public $emitArgs = null;
+
+    /** @var bool */
+    public $reset = false;
 
     /** @var bool */
     public $visible = true;
@@ -119,7 +132,7 @@ class Button extends Field implements Unfillable
         parent::__construct($name, $attribute);
 
         $this->text = $name;
-        $this->key = $attribute ?? Str::slug($name);
+        $this->key = $attribute ?? Str::kebab($name);
         $this->config = config('nova-button');
         $this->indexName = $name;
 
@@ -150,7 +163,7 @@ class Button extends Field implements Unfillable
     protected function addLinkFallbacks(): void
     {
         if (!Arr::has($this->config, 'styles.link-primary')) {
-            $this->config['styles']['link-primary'] = 'cursor-pointer dim inline-block text-gray-50 font-bold';
+            $this->config['styles']['link-primary'] = 'shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900';
         }
 
         if (!Arr::has($this->config, 'styles.link-success')) {
@@ -177,7 +190,6 @@ class Button extends Field implements Unfillable
     {
         parent::resolve($resource, $attribute);
 
-        $this->classes[] = 'nova-button-' . strtolower(class_basename($resource));
         $this->classes[] = Arr::get($this->config, "styles.{$this->style}");
         $this->loadingClasses = Arr::get($this->config, "styles.{$this->loadingStyle}");
         $this->successClasses = Arr::get($this->config, "styles.{$this->successStyle}");
@@ -191,7 +203,10 @@ class Button extends Field implements Unfillable
             'errorText' => $this->errorText,
             'confirm' => $this->confirm,
             'reload' => $this->reload,
+            'reloadHard' => $this->reloadHard,
+            'reset' => $this->reset,
             'event' => $this->event,
+            'eventArgs' => $this->eventArgs,
             'emit' => $this->emit,
             'emitArgs' => $this->emitArgs,
             'visible' => $this->visible,
@@ -207,7 +222,6 @@ class Button extends Field implements Unfillable
             'loadingClasses' => $this->loadingClasses,
             'successClasses' => $this->successClasses,
             'errorClasses' => $this->errorClasses,
-            'stacked' => $this->stacked,
         ]);
     }
 
@@ -258,15 +272,31 @@ class Button extends Field implements Unfillable
         return $this;
     }
 
+
+    /**
+     * Enable "hard" (window.reload, not inertia) reloads
+     *
+     * @param bool $value
+     * @return $this
+     */
+    public function reloadHard(bool $value = true): self
+    {
+        if ($value)
+            $this->reloadHard = $this->reload = $value;
+        return $this;
+    }
+
     /**
      * Enable the event button type.
      *
      * @param string $event
+     * @param mixed $eventArgs
      * @return $this
      */
-    public function event(string $event): self
+    public function event(string $event, mixed $eventArgs): self
     {
         $this->event = $event;
+        $this->eventArgs = $eventArgs;
 
         return $this;
     }
@@ -286,6 +316,18 @@ class Button extends Field implements Unfillable
         return $this;
     }
 
+    /**
+     * Reset the button to active after task completion.
+     *
+     * @param bool $value
+     * @return $this
+     */
+    public function reset(bool $value = true): self
+    {
+        $this->reset = $value;
+
+        return $this;
+    }
 
     //--------------------------------------
     // CONDITIONALS
@@ -406,12 +448,12 @@ class Button extends Field implements Unfillable
     /**
      * Set the classes.
      *
-     * @param ...$classes
+     * @param string|array $classes
      * @return $this
      */
-    public function classes(...$classes): self
+    public function classes(mixed $classes): self
     {
-        $this->classes = array_merge($this->classes, ...$classes);
+        $this->classes = array_merge($this->classes, is_array($classes) ? $classes : explode(' ', $classes));
 
         return $this;
     }

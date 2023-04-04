@@ -61,6 +61,8 @@ export default {
         this.success = true;
         this.loading = false;
 
+        this.resetButton();
+        this.globalEmit();
         queue.hasSuccess = true;
 
         if (this.resourceId) {
@@ -117,6 +119,16 @@ export default {
         // I'm assuming that Nova.$emit and this.$emit have different scopes, quick testing agrees
         Nova.$emit(this.field.emit, this.field.emitArgs);
       }
+    },
+    resetButton() {
+      const self = this;
+      if (this.field.reset) {
+        // Reset the button so we can use it again, but lets wait 1 second.
+        setTimeout(() => self.success = self.loading = false, 1000);
+      }
+    },
+    isEmpty(value) {
+      return typeof value !== 'number' && _.isEmpty(value);
     },
   },
   computed: {
