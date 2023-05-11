@@ -278,14 +278,13 @@ class Button extends Field implements Unfillable
      * @param mixed $emitArgs
      * @return $this
      */
-    public function emit(string $emit, mixed $emitArgs): self
+    public function emit(string $emit, $emitArgs = null): self
     {
         $this->emit = $emit;
         $this->emitArgs = $emitArgs;
 
         return $this;
     }
-
 
     //--------------------------------------
     // CONDITIONALS

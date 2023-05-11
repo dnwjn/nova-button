@@ -140,26 +140,22 @@ By default, clicking the button will cause an event to be dispatched via `Nova.$
 
 Default event: `Dnwjn\NovaButton\Events\ButtonClick`.
 
-The event can then be picked up via `Nova.$on`, and will receive the triggering key and, any optional arguments.
+The event can then be picked up via `Nova.$on`, and will receive the triggering key and any optional arguments.
 
 You can specify the key and optional arguments:
 
 ```php
 Button::make('Notify', 'notify-some-user')
-    ->emit('notification', ['article_id' => $article_id, 'which' => 'tags'])
+    ->emit('notification', ['article_id' => 1, 'which' => 'tags'])
 ```
 
-You can listen to the event by creating a listener in your vue component or JavaScript:
+You can listen to the event by creating a listener in your Vue component or JavaScript:
 
 ```js
-onMounted(function () {
-    Nova.$on('notification', (e) => {
-        if (e.article_id) {
-            this.getOurStory(e.article_id, e.which === 'tags', e.which === 'story');
-        }
-    })
-    // ...
-}
+Nova.$on('notification', (e) => {
+    // e.article_id = 1
+    // e.which = 'tags'
+})
 ```
 
 ### Texts

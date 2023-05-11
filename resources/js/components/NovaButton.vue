@@ -88,13 +88,17 @@ export default {
     post() {
       this.$emit('loading');
 
-      if (!this.resourceName || !this.field.key) {
-        return;
-      }
-
       window.setTimeout(() => {
         this.loading = true;
       }, 200);
+
+      this.laravelEmit();
+      this.novaEmit();
+    },
+    laravelEmit() {
+      if (!this.resourceName || !this.field.key) {
+        return;
+      }
 
       let route = `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.field.key}`;
       if (this.resourceId) {
@@ -103,6 +107,13 @@ export default {
 
       return Nova.request().post(route, { event: this.field.event });
     },
+    novaEmit() {
+      if (!this.field.emit) {
+        return;
+      }
+
+      Nova.$emit(this.field.emit, this.field.emitArgs);
+    },
     navigate() {
       if (this.field.type === 'route') {
         this.$inertia.visit(this.field.route);
@@ -110,12 +121,6 @@ export default {
 
       if (this.field.type === 'link') {
         window.open(this.field.link.href, this.field.link.target);
-      }
-    },
-    globalEmit() {
-      if (this.field.emit) {
-        // I'm assuming that Nova.$emit and this.$emit have different scopes, quick testing agrees
-        Nova.$emit(this.field.emit, this.field.emitArgs);
       }
     },
   },
