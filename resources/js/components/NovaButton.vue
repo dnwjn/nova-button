@@ -88,13 +88,17 @@ export default {
     post() {
       this.$emit('loading');
 
-      if (!this.resourceName || !this.field.key) {
-        return;
-      }
-
       window.setTimeout(() => {
         this.loading = true;
       }, 200);
+
+      this.laravelEmit();
+      this.novaEmit();
+    },
+    laravelEmit() {
+      if (!this.resourceName || !this.field.key) {
+        return;
+      }
 
       let route = `/nova-vendor/dnwjn/nova-button/${this.resourceName}/${this.field.key}`;
       if (this.resourceId) {
@@ -102,6 +106,13 @@ export default {
       }
 
       return Nova.request().post(route, { event: this.field.event });
+    },
+    novaEmit() {
+      if (!this.field.emit) {
+        return;
+      }
+
+      Nova.$emit(this.field.emit, this.field.emitArgs);
     },
     navigate() {
       if (this.field.type === 'route') {
