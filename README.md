@@ -5,7 +5,7 @@
 [![Github issues](https://img.shields.io/github/issues/dnwjn/nova-button?style=for-the-badge)](https://github.com/dnwjn/nova-button/issues)
 [![License](https://img.shields.io/github/license/dnwjn/nova-button?style=for-the-badge)](https://github.com/dnwjn/nova-button/blob/main/LICENSE)
 
-A Nova package for rendering buttons on index, detail and lens views.
+A Nova package for rendering buttons on different views.
 
 Use buttons to trigger backend events, navigate Nova routes or visit links.
 
@@ -252,7 +252,6 @@ Button::make('Text')->index(App\Nova\User::class)
 Button::make('Text')->detail(App\Nova\User::class, $this->user_id)
 Button::make('Text')->create(App\Nova\User::class)
 Button::make('Text')->edit(App\Nova\User::class, $this->user_id)
-Button::make('Text')->lens(App\Nova\User::class, 'users-without-confirmation')
 ```
 
 You can also set query parameters:
@@ -328,66 +327,6 @@ The default available classes are as follows:
 
 The passed key refers to one of the classes defined in the [config file](https://github.com/dnwjn/nova-button/blob/main/config/nova-button.php).
 You are free to change these classes or add your own.
-
-## Examples
-
-### Lenses
-
-You can use a button with [lenses](https://nova.laravel.com/docs/3.0/lenses/defining-lenses.html).
-
-![lens-example](https://user-images.githubusercontent.com/57711725/152637243-ebd753c2-5eda-4749-b8ba-c98ceb162e5b.png)
-
-First set up the lens:
-
-```php
-<?php
-
-namespace App\Nova\Lenses;
-
-class UsersWithoutConfirmation extends Lens
-{
-    public static function query(LensRequest $request, $query)
-    {
-        return $query
-            ->select(['users.id', 'users.name'])
-            ->whereNull('email_verified_at');
-    }
-
-    public function fields(Request $request)
-    {
-        return [
-            ID::make('ID', 'id'),
-            Text::make('Name', 'name'),
-            Button::make('Mark As Confirmed'),
-        ];
-    }
-}
-```
-
-Next, register a listener for the `Dnwjn\NovaButton\Events\ButtonClick` event in your [EventServiceProvider](https://laravel.com/docs/7.x/events):
-
-```php
-<?php
-
-namespace App\Listeners;
-
-use Dnwjn\NovaButton\Events\ButtonClick;
-
-class ConfirmUser
-{
-    public function handle(ButtonClick $event)
-    {
-        if ($event->key == 'mark-as-confirmed') {
-            $event->resource->email_verified_at = now();
-            $event->resource->save();
-        }
-    }
-}
-```
-
-To confirm the event and event data used in above functionality, see the Telescope inspection below:
-
-![telescope](https://user-images.githubusercontent.com/57711725/152637248-4bf65fa8-a270-48b9-aff3-08e6193eab6c.png)
 
 ## Changelog
 
