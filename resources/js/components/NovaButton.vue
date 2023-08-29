@@ -100,11 +100,43 @@ export default {
     },
     navigate() {
       if (this.field.type === 'route') {
-        this.$router.push(this.field.route);
+        this.handleRoute();
       }
 
       if (this.field.type === 'link') {
         window.open(this.field.link.href, this.field.link.target);
+      }
+    },
+    handleRoute() {
+      const route = this.field.route;
+
+      let path = `/resources/${route.params.resourceName}/`;
+      switch (route.name) {
+        case 'detail':
+          path += route.params.resourceId;
+          break;
+        case 'create':
+          path += 'new';
+          break;
+        case 'edit':
+          path += `${route.params.resourceId}/edit`;
+          break;
+      }
+
+      const url = new URL(path, window.location.origin);
+
+      if (route.params) {
+        Object.entries(route.params).forEach(([key, param]) => {
+          url.searchParams.append(key, param);
+        });
+      }
+
+      const fullPath = url.pathname + url.search;
+
+      if (fullPath === this.$router.history.current.fullPath) {
+        this.$router.go();
+      } else {
+        this.$router.push(fullPath);
       }
     },
     isEmpty(value) {
