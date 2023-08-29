@@ -132,7 +132,7 @@ export default {
       }
 
       const fullPath = url.pathname + url.search;
-      
+
       if (fullPath === this.$router.history.current.fullPath) {
         this.$router.go();
       } else {
