@@ -508,23 +508,6 @@ class Button extends Field
     }
 
     /**
-     * Set the lens route.
-     *
-     * @param string $namespace
-     * @param string $key
-     * @return $this
-     */
-    public function lens(string $namespace, string $key): self
-    {
-        $this->route('lens', [
-            'resourceName' => $this->normalizeResourceName($namespace),
-            'lens' => $key,
-        ]);
-
-        return $this;
-    }
-
-    /**
      * Set the link.
      *
      * @param string $href
