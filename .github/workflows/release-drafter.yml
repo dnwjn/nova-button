@@ -5,10 +5,6 @@ on:
     branches:
       - main
       - v3
-  pull_request:
-    types: [opened, reopened, synchronize]
-  pull_request_target:
-    types: [opened, reopened, synchronize]
 
 jobs:
   update-release-draft:
@@ -16,7 +12,7 @@ jobs:
 
     permissions:
       contents: write
-      pull-requests: write
+      pull-requests: read
 
     steps:
       - uses: release-drafter/release-drafter@v5
