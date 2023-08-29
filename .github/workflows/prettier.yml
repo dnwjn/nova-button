@@ -14,14 +14,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Run Prettier
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write ./resources/**/*.{js,vue}
-          commit_message: Fix styling
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Fix styling
+          commit_message: "[Chore] Fix styling"
