@@ -116,22 +116,28 @@ export default {
     },
     navigate() {
       if (this.field.type === 'route') {
+        let destination = null;
         const route = this.field.route;
 
-        let path = `/nova/resources/${route.params.resourceName}/`;
         switch (route.name) {
           case 'detail':
-            path += route.params.resourceId;
+            destination = route.params.resourceId;
             break;
           case 'create':
-            path += 'new';
+            destination = 'new';
             break;
           case 'edit':
-            path += `${route.params.resourceId}/edit`;
+            destination = `${route.params.resourceId}/edit`;
             break;
         }
 
+        let path = this.$url(`/resources/${route.params.resourceName}/${destination}`, {
+          viaResource: this.resourceName,
+          viaResourceId: this.resourceId,
+        });
+
         const url = new URL(path, window.location.origin);
+
         if (route.params) {
           Object.entries(route.params).forEach(([key, param]) => {
             url.searchParams.append(key, param);
