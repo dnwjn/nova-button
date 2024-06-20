@@ -10,7 +10,7 @@ export default {
     reload() {
       if (this.field.reload && queue.allowsReload()) {
         window.setTimeout(() => {
-          this.$inertia.reload();
+          this.$inertia.visit(window.location.href);
         }, 200);
       }
     },
