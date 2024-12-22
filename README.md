@@ -22,30 +22,31 @@ Use buttons to trigger backend events, navigate Nova routes or visit links.
 
 ## Versions
 
-For Nova 4 certain changes had to be made that rendered the package not backwards compatible with Nova 3. For that reason
-the package was split up into multiple versions. Please see the table below to determine which version you need.
+For almost every Nova version, certain changes have to be made that renders the package not backwards compatible with the previous version.
+Please see the table below to determine which version you need.
 
 | Version                                            | Nova |
 |----------------------------------------------------|------|
-| v4 (current)                                       | 4.0  |
+| v5 (current)                                       | 5.0  |
+| [v4](https://github.com/dnwjn/nova-button/tree/v4) | 4.0  |
 | [v3](https://github.com/dnwjn/nova-button/tree/v3) | 3.0  |
 
 **Please note:** the `main` branch will always be the latest major version.
 
 ## Requirements
 
-| What    | Version |
-|---------|---------|
-| PHP     | \>=7.3  |
-| Laravel | \>=8.0  |
-| Nova    | \>=4.0  |
+| What    | Version  |
+|---------|----------|
+| PHP     | \>=8.1   |
+| Laravel | \>=10.34 |
+| Nova    | \>=5.0   |
 
 ## Installation
 
 You can install this package by running the following command:
 
 ```bash
-composer require dnwjn/nova-button:^4.0
+composer require dnwjn/nova-button:^5.0
 ```
 
 To publish the config file, run the following command:
@@ -73,18 +74,32 @@ public function fields(Request $request)
 
 ### Quick links
 
-* [Confirm](#confirm)
-* [Reload](#reload)
-* [Laravel Events](#laravel-events)
-* [JavaScript Events](#javascript-events)
-* [Texts](#texts)
-* [State](#state)
-* [Feedback](#feedback)
-* [Nova routes](#nova-routes)
-* [Links](#links)
-* [Classes](#classes)
-* [Styles](#styles)
-* [Examples](#examples)
+- [Nova Button](#nova-button)
+  - [Versions](#versions)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Quick links](#quick-links)
+    - [Confirm](#confirm)
+    - [Reload](#reload)
+    - [Laravel Events](#laravel-events)
+    - [JavaScript Events](#javascript-events)
+    - [Texts](#texts)
+      - [Title](#title)
+      - [Label](#label)
+      - [Index name](#index-name)
+    - [State](#state)
+      - [Visibility](#visibility)
+      - [Disabled](#disabled)
+    - [Feedback](#feedback)
+    - [Nova routes](#nova-routes)
+    - [Links](#links)
+    - [Classes](#classes)
+    - [Styles](#styles)
+  - [Changelog](#changelog)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
 
 ---
 
