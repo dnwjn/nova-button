@@ -21,7 +21,7 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3.2.0",
         "@eslint/js": "^9.17.0",
-        "@vue/babel-plugin-jsx": "^1.1.1",
+        "@vue/babel-plugin-jsx": "^2.0.1",
         "@vue/compiler-sfc": "^3.2.47",
         "auto-changelog": "^2.4.0",
         "cross-env": "^7.0.3",
